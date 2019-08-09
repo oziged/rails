@@ -1,0 +1,12 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<h1><%= @user.name %></h1>
+<img class="avatar" src="<%= @user.avatar %>" alt="">
+
+<%#= if current_user%>
+<%= link_to 'Edit', edit_user_path(@user) if current_user && current_user.id == @user.id%>
+<%# end %>
+  <%= link_to 'Delete', user_path(@user), method: 'delete' if current_user && current_user.id == @user.id%>
+<%= link_to 'Back', users_path %>
