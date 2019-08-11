@@ -1,3 +1,4 @@
+<%= user[:birth_date] = nil %>
 <%= form_with(model: user, local: true) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
@@ -12,7 +13,22 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :email %>
+    <%= form.label :name, 'Имя' %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :surname, 'Фамилия' %>
+    <%= form.text_field :surname %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :birth_date, 'Год ' %>
+  <%= form.date_select :birth_date, start_year: 1940, end_year: Date.current.year  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, 'E-mail' %>
     <%= form.text_field :email %>
   </div>
 

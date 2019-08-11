@@ -1,0 +1,25 @@
+<% if current_user.nil? %>
+    <header>
+        <div class="container">
+            <div class="left_block">
+                <%= link_to image_tag('logo_big.png', class: 'logo'), root_path %>
+            </div>
+            <div class="right_block">
+                <%= link_to 'Регистрация', signup_path %>
+            </div>
+        </div>
+    </header>
+<% else %>
+    <header>
+            <div class="container">
+                <div class="left_block">
+                    <%= link_to image_tag('logo_big.png', class: 'logo'), root_path %>
+                </div>
+                <ul class="right_block">
+                    <%= link_to "<li>Search</li>".html_safe, search_path %>
+                    <%= link_to "<li>Edit</li>".html_safe, edit_user_path(current_user) %>
+                    <%= link_to "<li>Logout</li>".html_safe, logout_path(@user) %>
+                </ul>
+            </div>
+    </header>
+<% end %>

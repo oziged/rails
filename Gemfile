@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
   gem 'bcrypt', '~> 3.1.7'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.

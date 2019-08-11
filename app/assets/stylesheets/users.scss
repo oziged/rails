@@ -2,7 +2,54 @@ a:visited {
   color: black;
 }
 
-.avatar {
-  width: 200px;
-  display: block;
+.main_block {
+  width: 100%;
+  display: flex;
+  // justify-content: space-between;
+
+  .left_block {
+    width: 350px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+  }
+
+  .right_block {
+    width: 540px;
+    margin-left: 20px;
+    background-color: white;
+    border-radius: 5px;
+
+    .top_block {
+      margin: 10px 20px;
+      .first_line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(218, 218, 218);
+        .online_status {
+          opacity: .6;
+          font-size: 14px;
+        }
+      }
+      .user_info {
+        font-size: 14px;
+        margin-top: 10px;
+        table {
+          width: 100%;
+          tr {
+            .left_column {
+              width: 40%;
+            }
+            .right_column {
+              width: 60%;
+            }
+          }
+        }
+      }
+    }
+  }
 }
+

@@ -1,12 +1,38 @@
-
-
 <p id="notice"><%= notice %></p>
 
-<h1><%= @user.name %></h1>
-<img class="avatar" src="<%= @user.avatar %>" alt="">
+<div class="main_block">
+  <div class="left_block">
+    <div class="avatar">
+      <img src="<%= @user.avatar %>" alt="">
+    </div>
+  </div>
+  <div class="right_block">
+    <div class="top_block">
+      <div class="first_line">
+          <span>
+            <%= @user.name %> <%= @user.surname %>
+          </span>
+          <span class="online_status">
+            <%= @online %>
+          </span>
+      </div>
+      <div class="user_info">
+        <table>
+          <tr>
+            <td class="left_column">Дата регистрации :</td>
+            <td class="right_column"><%= @user.created_at.to_s[0..-14] %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%#= if current_user%>
+
+
 <%= link_to 'Edit', edit_user_path(@user) if current_user && current_user.id == @user.id%>
-<%# end %>
   <%= link_to 'Delete', user_path(@user), method: 'delete' if current_user && current_user.id == @user.id%>
 <%= link_to 'Back', users_path %>
+Был зарегистрирован : <%= Date.parse @user.created_at.to_s %>
+<%= @online %>
+

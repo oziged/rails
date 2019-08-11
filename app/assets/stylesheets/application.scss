@@ -9,7 +9,22 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *
+ *#EDEEF0#EDEEF0
  *= require_tree .
  *= require_self
  */
+
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: #EDEEF0;
+}
+
+.main_section, .container {
+    max-width: 900px;
+}
+
+.main_section {
+    margin: 0 auto;
+    width: 100%;
+}
+

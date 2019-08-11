@@ -1,15 +1,41 @@
+<%= @user.email %>
+
 <p id=”alert”><%= alert %></p>
 <h1>Login</h1>
-<%= form_with model: @user, url: sessions_path do |form| %>
+<%= form_with(model: @user, local: true, url: login_path) do |form| %>
   <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email %>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
   </div>
   <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
   </div>
   <div class="actions">
-    <%= submit_tag "Login" %>
+    <%= form.submit "Login" %>
   </div>
+  
 <% end %>
+
+<h1><%= @user.inspect %></h1>
+<!-- 
+<%= form_with(model: @user) do |form| %>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %> -->
