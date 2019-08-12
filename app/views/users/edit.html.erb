@@ -4,3 +4,6 @@
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>
+<%= link_to 'Delete', user_path, method: 'delete', data: {confirm: "Ты точно в этом уверен?"} %>
+
+

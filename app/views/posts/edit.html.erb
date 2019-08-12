@@ -1,0 +1,16 @@
+<div class="edit_post">
+  <%= form_for @post, url: user_post_path, method: "put", html: {class: 'pure-form'} do |form| %>
+    <div class="field">
+      <%= form.text_field :title, placeholder: 'Заголовок поста' %>
+    </div>
+
+    <div class="field">
+      <%= form.text_area :body, placeholder: 'Расскажите что-нибудь..' %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: 'pure-button pure-button-primary' %>
+    </div>
+  <% end %>
+</div>
+

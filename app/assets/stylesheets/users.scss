@@ -3,6 +3,7 @@ a:visited {
 }
 
 .main_block {
+  margin-top: 20px;
   width: 100%;
   display: flex;
   // justify-content: space-between;
@@ -74,7 +75,7 @@ a:visited {
           opacity: .1;
           border-bottom: 1px solid black;
         }
-        .delete_post {
+        .delete_post_img {
           position: absolute;
           width: 20px;
           height: 20px;
@@ -82,6 +83,15 @@ a:visited {
           top: 10px;
           background-size: cover;
           background-image: url('https://c7.uihere.com/icons/705/357/295/bin-delete-empty-junk-remove-trash-icon-05072d5c8a4d895ba836dae3f1e6f2f1.png');
+        }
+        .edit_post_img {
+          position: absolute;
+          width: 17px;
+          height: 17px;
+          right: 40px;
+          top: 10px;
+          background-size: cover;
+          background-image: url('https://image.flaticon.com/icons/png/128/61/61456.png');
         }
       }
       &_comments {
@@ -100,6 +110,11 @@ a:visited {
           height: 25px;
         }
       }
+      .edit_comment_text {
+        font-size: 10px;
+        text-align: right;
+        padding: 0 5px 5px 0;
+      }
       .comment_right_block {
         width: 100%;
         margin-left: 5px;
@@ -115,3 +130,40 @@ a:visited {
   }
 }
 
+
+.alert_box {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  animation: test 2s;
+  border-radius: 5px;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+
+.success {
+  color: black;
+  background-color: #d6f5d6;
+}
+
+.error {
+  color: black;
+  background-color: #ffb3b3;
+}
+
+@keyframes test {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  }
+}

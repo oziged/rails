@@ -1,7 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<div>ALERT<%= @user.posts.new.inspect %></div>
-
 <div class="main_block">
   <div class="left_block">
     <div class="avatar">
@@ -47,13 +43,14 @@
     </div>
     <div class="posts">
       <% @user.posts.reverse.each do |post| %>
-        <% next if post.id.nil?%>1
+        <% next if post.id.nil?%>
         <div class="post">
           <div class="post_main_block">
             <div class="title"><%= post.title %></div>
             <div class="title_border"></div>
             <div class="body"><%= post.body %></div>
-            <%= link_to '', user_post_path(user_id: @user.id, id: post.id), method: "delete", class: 'delete_post' %>
+            <%= link_to '', edit_user_post_path(user_id: @user.id, id: post.id), class: 'edit_post_img' %>
+            <%= link_to '', user_post_path(user_id: @user.id, id: post.id), method: "delete", class: 'delete_post_img' %>
           </div>
           <div class="post_comments">
             <% post.comments.each do |comment| %>
@@ -71,10 +68,15 @@
                     <%= comment.body %></div>
                     </div>
                     <div class="created_at">
-                      <%= comment.created_at.localtime.strftime("%H-%M-%S")
+                      <%= comment.created_at.localtime.strftime("%H:%M:%S")
                       %>
                     </div>
                 </div>
+              <div class="edit_comment_text">
+              <% if comment.user_id == current_user.id %>
+                <%= link_to 'Редактировать комментарий', edit_user_post_comment_path(user_id: comment.user_id, post_id: comment.post_id, id: comment.id) %>
+              <% end %>
+              </div>
             <% end %>
           </div>
 
@@ -98,12 +100,3 @@
     </div>
   </div>
 </div>
-
-
-
-<%= link_to 'Edit', edit_user_path(@user) if current_user && current_user.id == @user.id%>
-  <%= link_to 'Delete', user_path(@user), method: 'delete' if current_user && current_user.id == @user.id%>
-<%= link_to 'Back', users_path %>
-Был зарегистрирован : <%= Date.parse @user.created_at.to_s %>
-<%= @online %>
-

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get 'search', to: 'users#search', as: 'search'
   get 'signup', to: 'users#new', as: 'signup'
+  post 'signup', to: 'users#create'
   get 'login', to: 'sessions#new', as: 'login'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy', as: 'logout'

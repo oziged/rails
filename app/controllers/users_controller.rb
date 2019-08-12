@@ -15,11 +15,12 @@ class UsersController < ApplicationController
   end
 
   def new
+    @link = signup_path
     @user = User.new
-    @user = User.new(email: '123')
   end
 
   def edit
+    @link = user_path
     if current_user.id != @user.id
       redirect_to root_path
     end
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
         redirect_to @user, notice: 'User was successfully created.'
       else
         render 'new'
+        # redirect_to signup_path
       end
   end
 
@@ -49,7 +51,7 @@ class UsersController < ApplicationController
     @user.destroy
     reset_session
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'User was successfully destroyed.' }
     end
   end
 

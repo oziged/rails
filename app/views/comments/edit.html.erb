@@ -1,0 +1,9 @@
+<%= form_for :comment, url: user_post_comment_path, method: 'put', html: {class: 'pure-form'} do |form| %>
+  <div class="field">
+    <%= form.text_area :body, placeholder: 'Текст комментария...' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'pure-button pure-button-primary' %>
+  </div>
+<% end %>
