@@ -1,21 +1,19 @@
-<%= form_with url: search_path, method: :get, local: true, enforce_utf8: false do |f| %>
+<%= form_with url: search_path, method: :get, local: true, enforce_utf8: false, html: {class: 'pure-form'} do |f| %>
   <%= f.label :input, "Search for:" %>
   <%= f.text_field :input %>
-  <%= f.submit "Search", name: nil %>
+  <%= f.submit "Search", name: nil, class: "pure-button pure-button-primary"%>
 <% end %>
 <h1>Users</h1>
-<table class="pure-table">
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-      </tr>
+<% @users.each do |user| %>
+  <%= link_to user_path(user) do %>
+  <div class="user_block">
+    <div class="user_avatar">
+      <%= image_tag (user.avatar) %>
+    </div>
+    <div class="user_info">
+      <div><%= user.name %> <%= user.surname %></div>
+      <div>online status : <%= user.online %></div>
+    </div>
+  </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
+<% end %>

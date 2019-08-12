@@ -1,0 +1,11 @@
+.user_block {
+  display: flex;
+  .user_avatar {
+    width: 100px;
+    img {
+      border-radius: 50%;
+      width: 100%;
+    }
+  }
+}
+
