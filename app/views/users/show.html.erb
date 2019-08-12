@@ -11,7 +11,7 @@
             <%= @user.name %> <%= @user.surname %>
           </span>
           <span class="online_status">
-            <%= @online %>
+            <%= @user.online %>
           </span>
       </div>
       <div class="user_info">
@@ -25,7 +25,7 @@
     </div>
     <!--  -->
     <div class="new_post">
-      <% if !current_user.nil? && current_user.id == @user.id %>
+      <% if can_current_user_change? @user.posts.new %>
         <%= form_for [@user, @user.posts.new], html: {class: 'pure-form'} do |form| %>
           <div class="field">
             <%= form.text_field :title, placeholder: 'Заголовок поста' %>
@@ -49,9 +49,11 @@
             <div class="title"><%= post.title %></div>
             <div class="title_border"></div>
             <div class="body"><%= post.body %></div>
-            <%= link_to '', edit_user_post_path(user_id: @user.id, id: post.id), class: 'edit_post_img' %>
-            <%= link_to '', user_post_path(user_id: @user.id, id: post.id), method: "delete", class: 'delete_post_img' %>
-          </div>
+            <% if can_current_user_change? post %>
+              <%= link_to '', edit_user_post_path(user_id: @user.id, id: post.id), class: 'edit_post_img'%>
+              <%= link_to '', user_post_path(user_id: @user.id, id: post.id), method: "delete", class: 'delete_post_img' %>
+            <% end %>
+            </div>
           <div class="post_comments">
             <% post.comments.each do |comment| %>
               <div class="post_comment">
@@ -73,7 +75,7 @@
                     </div>
                 </div>
               <div class="edit_comment_text">
-              <% if comment.user_id == current_user.id %>
+              <% if can_current_user_change? comment %>
                 <%= link_to 'Редактировать комментарий', edit_user_post_comment_path(user_id: comment.user_id, post_id: comment.post_id, id: comment.id) %>
               <% end %>
               </div>
@@ -83,19 +85,16 @@
           <div class="add_comment">
               <%= form_for [@user, post, post.comments.new], html: {class: 'pure-form'} do |form| %>
               <div class="field">
-                  <%= form.text_area :body, placeholder: 'Текст комментария...' %>
-                </div>
+                <%= form.text_area :body, placeholder: 'Текст комментария...' %>
+              </div>
         
-                <div class="actions">
-                  <%= form.submit class: 'pure-button pure-button-primary' %>
-                </div>
+              <div class="actions">
+                <%= form.submit class: 'pure-button pure-button-primary' %>
+              </div>
               <% end %>
           </div>
 
         </div>
-
-
-
       <% end %>
     </div>
   </div>

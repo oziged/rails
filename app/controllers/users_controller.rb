@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @online = online_status @user.was_online
+    # @online = online_status @user.was_online
   end
 
   def new
@@ -38,12 +38,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-      else
-        format.html { render :edit }
-      end
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render :edit
     end
   end
 
