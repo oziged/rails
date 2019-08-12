@@ -131,39 +131,6 @@ a:visited {
 }
 
 
-.alert_box {
-  position: absolute;
-  bottom: 50px;
-  left: 50px;
-  width: 200px;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
-  animation: test 2s;
-  border-radius: 5px;
-  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-}
-
-.success {
-  color: black;
-  background-color: #d6f5d6;
-}
-
-.error {
-  color: black;
-  background-color: #ffb3b3;
-}
-
-@keyframes test {
-  0% {
-    transform: translateY(100px);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-  opacity: 0;
-  }
+table {
+  width: 100%;
 }
