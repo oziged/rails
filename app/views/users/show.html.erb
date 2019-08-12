@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<div>ALERT<%= @user.posts.new.inspect %></div>
+
 <div class="main_block">
   <div class="left_block">
     <div class="avatar">
@@ -24,6 +26,75 @@
           </tr>
         </table>
       </div>
+    </div>
+    <!--  -->
+    <div class="new_post">
+      <% if !current_user.nil? && current_user.id == @user.id %>
+        <%= form_for [@user, @user.posts.new], html: {class: 'pure-form'} do |form| %>
+          <div class="field">
+            <%= form.text_field :title, placeholder: 'Заголовок поста' %>
+          </div>
+
+          <div class="field">
+            <%= form.text_area :body, placeholder: 'Расскажите что-нибудь..' %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit class: 'pure-button pure-button-primary' %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="posts">
+      <% @user.posts.reverse.each do |post| %>
+        <% next if post.id.nil?%>1
+        <div class="post">
+          <div class="post_main_block">
+            <div class="title"><%= post.title %></div>
+            <div class="title_border"></div>
+            <div class="body"><%= post.body %></div>
+            <%= link_to '', user_post_path(user_id: @user.id, id: post.id), method: "delete", class: 'delete_post' %>
+          </div>
+          <div class="post_comments">
+            <% post.comments.each do |comment| %>
+              <div class="post_comment">
+                <div class="comment_left_block">
+                  <div class="post_comment_avatar">
+                    <%= image_tag comment.user.avatar %>
+                  </div>
+                </div>
+                <div class="comment_right_block">
+                  <div>
+                    <%= link_to comment.user.name, user_path(comment.user) %>
+                  </div>
+                  <div>
+                    <%= comment.body %></div>
+                    </div>
+                    <div class="created_at">
+                      <%= comment.created_at.localtime.strftime("%H-%M-%S")
+                      %>
+                    </div>
+                </div>
+            <% end %>
+          </div>
+
+          <div class="add_comment">
+              <%= form_for [@user, post, post.comments.new], html: {class: 'pure-form'} do |form| %>
+              <div class="field">
+                  <%= form.text_area :body, placeholder: 'Текст комментария...' %>
+                </div>
+        
+                <div class="actions">
+                  <%= form.submit class: 'pure-button pure-button-primary' %>
+                </div>
+              <% end %>
+          </div>
+
+        </div>
+
+
+
+      <% end %>
     </div>
   </div>
 </div>

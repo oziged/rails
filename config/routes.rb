@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   root 'home#index'
 
-  resources :users, except: [:index]
+  resources :users, except: [:index] do
+    resources :posts do
+      resources :comments
+    end
+  end
   resources :sessions, only: [:create]
+
   get 'search', to: 'users#search', as: 'search'
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'

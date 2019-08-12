@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def show
-      @online = online_status @user.was_online
+    @online = online_status @user.was_online
   end
 
   def new
