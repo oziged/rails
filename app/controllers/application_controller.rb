@@ -1,28 +1,10 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user
-  # helper_method :online_status
-
-#   def online_status str
-#     was_online = DateTime.parse(str).to_i
-#     now = DateTime.now.to_i
-#     offline = now - was_online
-#     if offline < 300
-#         'online'
-#     else
-#       if offline < 3600
-#         "#{offline/60} минут назад"
-#       elsif offline < 86400
-#         "#{offline/3600} часов назад"
-#       else
-#         "#{Time.at(was_online).to_s[0..-16]}"
-#       end
-#     end
-# end
 
   def current_user
     if session[:user_id]
       @current_user ||= User.find(session[:user_id])
-      @current_user.update(was_online: DateTime.now)
+      @current_user.update_attribute(:was_online, DateTime.now)
       @current_user
     else
       @current_user = nil 

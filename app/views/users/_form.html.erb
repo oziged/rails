@@ -1,16 +1,5 @@
-<%= user[:birth_date] = nil %>
-<%= form_with(model: user, local: true, url: @link) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: user, local: true, url: @link, class: 'pure-form') do |form| %>
 
   <div class="field">
     <%= form.label :name, 'Имя' %>
@@ -22,11 +11,6 @@
     <%= form.text_field :surname %>
   </div>
   
-  <div class="field">
-    <%= form.label :birth_date, 'Год ' %>
-  <%= form.date_select :birth_date, start_year: 1940, end_year: Date.current.year  %>
-  </div>
-
   <div class="field">
     <%= form.label :email, 'E-mail' %>
     <%= form.text_field :email %>
@@ -43,6 +27,16 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'pure-button pure-button-primary submit_form' %>
   </div>
+
+
+  <% if user.errors.any? %>
+  <ul class="errors_list">
+  <% user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+  <% end %>
 <% end %>
+

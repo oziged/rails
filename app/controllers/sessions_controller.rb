@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     else
       if @user.nil?
       @user = User.new(email:user_params[:email])
+      @user.errors.add(:name, "Email or password is incorrect")
       render 'new'
       end
     end

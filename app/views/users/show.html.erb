@@ -1,4 +1,4 @@
-<div class="main_block">
+      <div class="main_block">
   <div class="left_block">
     <div class="avatar">
       <img src="<%= @user.avatar %>" alt="">
@@ -81,7 +81,7 @@
               </div>
             <% end %>
           </div>
-
+          <% if current_user %>
           <div class="add_comment">
               <%= form_for [@user, post, post.comments.new], html: {class: 'pure-form'} do |form| %>
               <div class="field">
@@ -93,6 +93,7 @@
               </div>
               <% end %>
           </div>
+        <% end %>
 
         </div>
       <% end %>

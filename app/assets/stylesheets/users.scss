@@ -130,7 +130,11 @@ a:visited {
   }
 }
 
-
-table {
-  width: 100%;
+.form_edit {
+  width: 50%;
+  margin: 0 auto;
+  a[data-method="delete"] {
+    margin-top: 10px;
+    width: 100%;
+  }
 }

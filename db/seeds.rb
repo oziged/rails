@@ -12,7 +12,7 @@ require 'faker'
   name = Faker::Name.first_name
   surname = Faker::Name.last_name
   email = "#{name.downcase}_#{surname.downcase}@gmail.com"
-  user = User.create(name: name, surname: surname, email: email, password: '1', was_online: DateTime.now)
+  user = User.create(name: name, surname: surname, email: email, password: '1', password_confirmation: '1', was_online: DateTime.now)
   2.times do
     user.posts.create(title: BetterLorem.w(3, true, true), body: BetterLorem.p(2, true, true))
   end

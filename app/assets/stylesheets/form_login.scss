@@ -1,0 +1,12 @@
+.error_class { 
+    border: 1px solid red!important;
+}
+
+.actions {
+    margin-top: 5px;
+}
+
+form[action="/login"] {
+    width: 50%;
+    margin: 20px auto;
+}

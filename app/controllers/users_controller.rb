@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @online = online_status @user.was_online
   end
 
   def new
@@ -30,10 +29,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
       if @user.save
         session[:user_id] = @user.id
+        @user.update(was_online: DateTime.now)
         redirect_to @user, notice: 'User was successfully created.'
       else
+        @link = signup_path
         render 'new'
-        # redirect_to signup_path
       end
   end
 
@@ -59,11 +59,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      temp_params = params.require(:user).permit!
-      temp_params[:birth_date] = "#{temp_params['birth_date(1i)']}|#{temp_params['birth_date(2i)']}|#{temp_params['birth_date(3i)']}'"
-      temp_params.delete('birth_date(1i)')
-      temp_params.delete('birth_date(2i)')
-      temp_params.delete('birth_date(3i)')
-      temp_params
+      params.require(:user).permit!
     end
 end

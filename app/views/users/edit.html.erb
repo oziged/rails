@@ -1,9 +1,7 @@
-<h1>Editing User</h1>
+<div class="form_edit">
+    <%= render 'form', user: @user %>
+    <%= link_to 'Delete', user_path, method: 'delete', data: {confirm: "Ты точно в этом уверен?"}, class: 'pure-button pure-button-primary' %>
+</div>
 
-<%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', :back %>
-<%= link_to 'Delete', user_path, method: 'delete', data: {confirm: "Ты точно в этом уверен?"} %>
 
 

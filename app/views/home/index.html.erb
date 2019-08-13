@@ -1,11 +1,6 @@
-<% if current_user %>
-  Logged in as <%= current_user.email %>.
-  <%= link_to "Log Out", logout_path %>
-<% else %>
-  <%= link_to "Sign Up", signup_path %> or
-  <%= link_to "Log In", login_path %>
-<% end %>
-<p id="notice"><%= notice %></p>
-<h1>Example</h1>
-<p>Lorem ipsum …</p>
+
+<div class="root_page">
+  <%= link_to "Log In", login_path, class: 'pure-button pure-button-primary' %>
+  <%= link_to "Sign Up", signup_path, class: 'pure-button pure-button-primary' %>
+  </div>
 

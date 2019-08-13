@@ -1,18 +1,21 @@
-<p id=”alert”><%= alert %></p>
-<h1>Login</h1>
-<%= form_with(model: @user, local: true, url: login_path) do |form| %>
+<% if @user.errors.full_messages.any? %>
+ <% error_class = 'error_class'%>
+<% end %>
+
+<%= form_with(model: @user, local: true, url: login_path, class: 'pure-form') do |form| %>
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email %>
+    <%= form.text_field :email, class: error_class %>
   </div>
   <div class="field">
     <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, class: error_class %>
   </div>
   <div class="actions">
-    <%= form.submit "Login" %>
+    <%= form.submit "Login", class: 'pure-button pure-button-primary' %>
   </div>
   
 <% end %>
+<%= @user.errors.full_messages %>
 
 
