@@ -7,15 +7,21 @@
     <%= form.label :email %>
     <%= form.text_field :email, class: error_class %>
   </div>
+
   <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password, class: error_class %>
   </div>
+
+  <% if @user.errors.any? %>
+    <div class="error_text">
+      Почта или пароль неверный
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= form.submit "Login", class: 'pure-button pure-button-primary' %>
   </div>
-  
 <% end %>
-<%= @user.errors.full_messages %>
 
 

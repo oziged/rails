@@ -28,11 +28,11 @@
       <% if can_current_user_change? @user.posts.new %>
         <%= form_for [@user, @user.posts.new], html: {class: 'pure-form'} do |form| %>
           <div class="field">
-            <%= form.text_field :title, placeholder: 'Заголовок поста' %>
+            <%= form.text_field :title, placeholder: 'Заголовок поста', maxlength: 20 %>
           </div>
 
           <div class="field">
-            <%= form.text_area :body, placeholder: 'Расскажите что-нибудь..' %>
+            <%= form.text_area :body, placeholder: 'Расскажите что-нибудь..', maxlength: 5000 %>
           </div>
 
           <div class="actions">

@@ -7,9 +7,8 @@ class User < ApplicationRecord
   validates :surname, presence: true
   validates :password, presence: true
   validates :password_confirmation, presence: true
-  validates :email, presence: true, uniqueness: true
-  validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i,
-    message: "form is incorrect" }
+  validates :email, uniqueness: true
+  validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}
 
   def avatar
     'https://miro.medium.com/max/800/0*QCRunR_VjAIrvkjC.png'

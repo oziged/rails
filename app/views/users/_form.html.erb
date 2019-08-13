@@ -6,37 +6,59 @@
     <%= form.text_field :name %>
   </div>
 
+  <% if user.errors.include?(:name) %>
+    <div class="error_text">
+      Обязательный пункт*
+    </div>
+  <% end %>
+
   <div class="field">
     <%= form.label :surname, 'Фамилия' %>
     <%= form.text_field :surname %>
   </div>
-  
+
+  <% if user.errors.include?(:surname) %>
+    <div class="error_text">
+      Обязательный пункт*
+    </div>
+  <% end %>
+
   <div class="field">
     <%= form.label :email, 'E-mail' %>
     <%= form.text_field :email %>
   </div>
+
+  <% if user.errors.include?(:email) %>
+    <div class="error_text">
+      Формат почты невереный
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password %>
   </div>
 
+  <% if user.errors.include?(:password) %>
+    <div class="error_text">
+      Пароли должны совпадать и быть длинее 6 символов
+    </div>
+  <% end %>
+
   <div class="field">
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation %>
   </div>
 
+  <% if user.errors.include?(:password_confirmation) %>
+    <div class="error_text">
+      Пароли должны совпадать и быть длинее 6 символов
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= form.submit class: 'pure-button pure-button-primary submit_form' %>
   </div>
-
-
-  <% if user.errors.any? %>
-  <ul class="errors_list">
-  <% user.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-  </ul>
-  <% end %>
 <% end %>
+
 
