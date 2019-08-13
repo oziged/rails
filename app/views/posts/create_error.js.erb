@@ -1,0 +1,22 @@
+var errors = <%=raw @post.errors.messages.to_json %>;
+console.log(errors);
+['title', 'body'].forEach(id => {
+  let error = document.querySelector(`#post_${id}`).nextElementSibling;
+  console.log(`error = ${error}`)
+  console.log(error);
+    if (error != null) {
+        console.log('i come')
+      error.remove();
+  };
+});
+
+
+for(let key in errors) {
+  div = document.createElement('div');
+  div.classList.add('error_text');
+  div.textContent = errors[key];
+
+  error_input = document.querySelector(`#post_${key}`);
+  error_input.after(div);
+}
+

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: [:create]
 
-  get 'search', to: 'users#search', as: 'search'
+  get 'search', to: 'users#index', as: 'search'
   get 'signup', to: 'users#new', as: 'signup'
   post 'signup', to: 'users#create'
   get 'login', to: 'sessions#new', as: 'login'

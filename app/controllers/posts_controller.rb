@@ -2,22 +2,23 @@ class PostsController < ApplicationController
     def create
         @user = User.find(params[:user_id])
         @post = @user.posts.new(post_params)
-        # @post.save
-        if @post.save
-            redirect_to @user
-        else
-            
-        render
+        @post.save
+        #     redirect_to @user
+        # else
+        #
+        # end
 
+        respond_to do |format|
+            if @post.save
+                format.js { render :action => "create" }
+            else
+                format.js { render :action => "create_error" }
+            end
         end
-        #     render(:template=> 'users/show')
-        # end
+    end
 
-        # respond_to do |format|
-        #     format.js {}
-        # end
-        # render plain: @post.errors.inspect
-        # render( :template=> 'users/show' )
+    def show
+
     end
 
     def destroy

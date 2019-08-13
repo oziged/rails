@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :current_user, only: [:show]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  def search
+  def index
     if params[:input]
       @users = make_search params[:input]
     else
