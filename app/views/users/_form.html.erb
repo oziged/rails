@@ -3,7 +3,7 @@
 
   <div class="field">
     <%= form.label :name, 'Имя' %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, maxlength: 15 %>
   </div>
 
   <% if user.errors.include?(:name) %>
@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= form.label :surname, 'Фамилия' %>
-    <%= form.text_field :surname %>
+    <%= form.text_field :surname, maxlength: 15 %>
   </div>
 
   <% if user.errors.include?(:surname) %>
@@ -36,7 +36,7 @@
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, minlength: 6 %>
   </div>
 
   <% if user.errors.include?(:password) %>
@@ -47,7 +47,7 @@
 
   <div class="field">
     <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
+    <%= form.password_field :password_confirmation, minlength: 6 %>
   </div>
 
   <% if user.errors.include?(:password_confirmation) %>

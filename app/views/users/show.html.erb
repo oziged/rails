@@ -26,7 +26,7 @@
     <!--  -->
     <div class="new_post">
       <% if can_current_user_change? @user.posts.new %>
-        <%= form_for [@user, @user.posts.new], html: {class: 'pure-form'} do |form| %>
+        <%= form_with model: [@user, @user.posts.new], html: {class: 'pure-form'} do |form| %>
           <div class="field">
             <%= form.text_field :title, placeholder: 'Заголовок поста', maxlength: 20 %>
           </div>
@@ -100,3 +100,8 @@
     </div>
   </div>
 </div>
+
+
+<%= @user.errors.inspect %>
+      <div></div>
+      <%= @post.errors.inspect %>
