@@ -2,3 +2,5 @@ var post = document.createElement('div');
 post.innerHTML = "<%= j render(:partial => 'posts/post') %>";
 var posts = document.querySelector('.posts');
 posts.prepend(post);
+
+console.log(post);

@@ -1,0 +1,10 @@
+<% if current_user %>
+
+    <%= form_for :comment, url: comments_path, html: {class: 'pure-form'} do |form| %>
+      <%= form.text_area :body, placeholder: 'Текст комментария...' %>
+      <%= form.hidden_field :commentable_type, value: 'Comment' %>
+      <%= form.hidden_field :commentable_id, value: comment.id %>
+      <%= form.submit class: 'pure-button pure-button-primary' %>
+    <% end %>
+
+<% end %>

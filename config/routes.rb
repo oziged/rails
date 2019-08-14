@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   root 'home#index'
-
+  resources :comments
   resources :users, except: [:index] do
-    resources :posts do
-      resources :comments
-    end
+    resources :posts
   end
   resources :sessions, only: [:create]
 

@@ -1,0 +1,12 @@
+<ul style="margin-left: 30px;">
+<% comment.comments.each do |comment| %>
+    <li>
+      <%= render 'comments/comment', comment: comment %>
+      <%= render 'comments/comment_new', comment: comment %>
+
+      <% if comment.comments.any? %>
+        <%= render 'comments/comments', comment: comment  %>
+      <% end %>
+    </li>
+<% end %>
+</ul>
