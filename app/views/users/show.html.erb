@@ -76,7 +76,7 @@
                 </div>
               <div class="edit_comment_text">
               <% if can_current_user_change? comment %>
-                <%= link_to 'Редактировать комментарий', edit_user_post_comment_path(user_id: comment.user_id, post_id: comment.post_id, id: comment.id) %>
+                <%= link_to 'Редактировать комментарий', edit_user_post_comment_path(user_id: current_user.id,post_id: :commentable_id) %>
               <% end %>
               </div>
             <% end %>
