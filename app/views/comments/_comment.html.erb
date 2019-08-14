@@ -1,1 +1,24 @@
-~~~<%= comment.body %> || <%= comment.user_id %>~~~
+<!--~~~<%#= comment.body %> || <%#= comment.user_id %>~~~-->
+
+<div class="post_comment">
+  <div class="comment_left_block">
+    <div class="post_comment_avatar">
+      <%= image_tag comment.user.avatar %>
+    </div>
+  </div>
+  <div class="comment_right_block">
+    <div>
+      <%= link_to comment.user.name, user_path(comment.user) %>
+    </div>
+    <div>
+      <%= comment.body %></div>
+  </div>
+  <div class="created_at">
+    <%= comment.created_at.localtime.strftime("%H:%M:%S") %>
+  </div>
+</div>
+<div class="edit_comment_text">
+  <% if can_current_user_change? comment %>
+    <%= link_to 'Редактировать комментарий', edit_comment_path(comment) %>
+  <% end %>
+</div>

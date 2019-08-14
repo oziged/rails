@@ -1,5 +1,5 @@
-<ul style="margin-left: 30px;">
-<% comment.comments.each do |comment| %>
+<ul style="margin-left: 30px; border-left: 1px solid rgba(0,0,0,.1);">
+  <% comment.comments.reverse.each do |comment| %>
     <li>
       <%= render 'comments/comment', comment: comment %>
       <%= render 'comments/comment_new', comment: comment %>

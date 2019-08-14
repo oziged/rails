@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
     if self.commentable.class != Post
       self.commentable.get_post_author
     else
-      return User.find(self.commentable.user_id)
+      User.find(self.commentable.user_id)
     end
   end
 end
