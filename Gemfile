@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
   gem 'betterlorem'
   gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

@@ -39,6 +39,8 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user.avatar = params[:file] # Assign a file like this, or
+    # render plain: user_params.inspect
     if @user.update(user_params)
       redirect_to @user
     else
