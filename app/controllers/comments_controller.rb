@@ -3,7 +3,12 @@ class CommentsController < ApplicationController
         @user = current_user
         @comment = current_user.comments.new(comment_params)
         if @comment.save
-            redirect_to @comment.get_post_author
+            post_author = @comment.get_post_author
+            if post_author == current_user
+                redirect_to root_path
+            else
+                redirect_to post_author
+            end
         end
     end
 

@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: [:show]
+  before_action :current_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:input]
-      @users = make_search params[:input]
+      @users = User.search_by_fullname(params[:input])
     else
       @users = User.all
     end
@@ -56,7 +56,8 @@ class UsersController < ApplicationController
 
   private
     def set_user
-      @user = User.find(params[:id])
+      params[:id].nil? ? @user = current_user : @user = User.find(params[:id])
+      redirect_to login_path if current_user.nil? && params[:id].nil?
     end
 
     def user_params

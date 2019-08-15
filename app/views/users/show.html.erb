@@ -11,14 +11,14 @@
             <%= @user.name %> <%= @user.surname %>
           </span>
           <span class="online_status">
-            <%= @user.online %>
+            <%= online_status @user %>
           </span>
       </div>
       <div class="user_info">
         <table>
           <tr>
             <td class="left_column">Дата регистрации :</td>
-            <td class="right_column"><%= @user.created_at.to_s[0..-14] %></td>
+            <td class="right_column"><%= @user.created_at.strftime('%d/%m/%Y') %></td>
           </tr>
         </table>
       </div>
@@ -27,17 +27,7 @@
     <div class="new_post">
       <% if can_current_user_change? @user.posts.new %>
         <%= form_with model: [@user, @user.posts.new], html: {class: 'pure-form'} do |form| %>
-          <div class="field">
-            <%= form.text_field :title, placeholder: 'Заголовок поста', maxlength: 20 %>
-          </div>
-
-          <div class="field">
-            <%= form.text_area :body, placeholder: 'Расскажите что-нибудь..', maxlength: 5000 %>
-          </div>
-
-          <div class="actions">
-            <%= form.submit class: 'pure-button pure-button-primary' %>
-          </div>
+          <%= render 'posts/post_form', user: @user, form: form %>
         <% end %>
       <% end %>
     </div>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'users#show'
   resources :comments
   resources :users, except: [:index] do
     resources :posts

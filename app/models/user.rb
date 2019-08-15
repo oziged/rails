@@ -3,10 +3,17 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   has_secure_password
+
+  scope :search_by_fullname, -> (input) { 
+    input = input.split(' ').map{|word|word.capitalize}.join(' ')
+    User.where("CONCAT_WS(' ', name, surname) LIKE ? or CONCAT_WS(' ', surname, name) LIKE ?", "%#{input}%", "%#{input}%")
+    # User.where("CONCAT_WS(' ', name, surname) LIKE ?", "%#{input}%").or(User.where("CONCAT_WS(' ', surname, name) LIKE ?", "%#{input}%"))
+  }
+
   validates :name, presence: true
   validates :surname, presence: true
-  validates :password, presence: true
-  validates :password_confirmation, presence: true
+  validates :password, format: { with: /\A.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*\z/}
+  validates :password_confirmation, format: { with: /\A.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*\z/}
   validates :email, uniqueness: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}
 
@@ -14,31 +21,6 @@ class User < ApplicationRecord
     'https://miro.medium.com/max/800/0*QCRunR_VjAIrvkjC.png'
   end
 
-  def online # shows when user was online
-    was_online = DateTime.parse(self.was_online).to_i
-    now = DateTime.now.to_i
-    offline = now - was_online
-    if offline < 300
-      'online'
-    else
-      if offline < 3600
-        "#{offline/60} минут назад"
-      elsif offline < 86400
-        puts '////////////////////////'
-        p self
-        puts '////////////////////////'
-        "#{offline/3600} часов назад"
-      else
-        "#{Time.at(was_online).to_s[0..-16]}"
-      end
-    end
-  end
 
-  # def can_change item
-  #   if item[:user_id] == current_user.id
-  #     return true
-  #   else
-  #     false
-  #   end
-  # end
+
 end
