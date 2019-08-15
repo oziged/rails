@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :commentable, polymorphic: true
   has_many :comments, as: :commentable
+  has_many :likes, dependent: :destroy, as: :likeable
 
   def get_post_author
     if self.commentable.class != Post

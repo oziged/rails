@@ -17,6 +17,10 @@
     <%= comment.created_at.localtime.strftime("%H:%M:%S") %>
   </div>
 </div>
+
+<%= render 'likes/like', type: comment %>
+<%= render 'likes/count', type: comment %>
+
 <div class="edit_comment_text">
   <% if can_current_user_change? comment %>
     <%= link_to 'Редактировать комментарий', edit_comment_path(comment) %>

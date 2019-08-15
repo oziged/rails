@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   has_secure_password
 
@@ -19,6 +20,10 @@ class User < ApplicationRecord
 
   def avatar
     'https://miro.medium.com/max/800/0*QCRunR_VjAIrvkjC.png'
+  end
+
+  def has_like_on? type
+    type.likes.where(user_id: self.id).exists?
   end
 
 

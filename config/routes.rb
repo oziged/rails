@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users, except: [:index] do
     resources :posts
   end
+
+  resources :likes
   resources :sessions, only: [:create]
 
   get 'search', to: 'users#index', as: 'search'

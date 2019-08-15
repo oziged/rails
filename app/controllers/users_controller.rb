@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :current_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_access, only: [:edit, :update, :destroy]
 
   def index
     if params[:input]
@@ -28,14 +28,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-      if @user.save
-        session[:user_id] = @user.id
-        @user.update(was_online: DateTime.now)
-        redirect_to @user, notice: 'User was successfully created.'
-      else
-        @link = signup_path
-        render 'new'
-      end
+    if @user.save
+      session[:user_id] = @user.id
+      @user.update(was_online: DateTime.now)
+      redirect_to @user, notice: 'User was successfully created.'
+    else
+      @link = signup_path
+      render 'new'
+    end
   end
 
   def update
@@ -55,12 +55,21 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_user
-      params[:id].nil? ? @user = current_user : @user = User.find(params[:id])
-      redirect_to login_path if current_user.nil? && params[:id].nil?
-    end
 
-    def user_params
-      params.require(:user).permit!
+  def set_user
+    params[:id].nil? ? @user = current_user : @user = User.find(params[:id])
+    redirect_to login_path if current_user.nil? && params[:id].nil?
+  end
+
+  def check_access
+    if current_user.nil?
+      redirect_to login_path
+    elsif @user != current_user
+      redirect_to current_user
     end
+  end
+
+  def user_params
+    params.require(:user).permit!
+  end
 end

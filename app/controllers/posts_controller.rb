@@ -3,10 +3,6 @@ class PostsController < ApplicationController
         @user = User.find(params[:user_id])
         @post = @user.posts.new(post_params)
         @post.save
-        #     redirect_to @user
-        # else
-        #
-        # end
 
         respond_to do |format|
             if @post.save

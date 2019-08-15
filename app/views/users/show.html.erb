@@ -1,4 +1,4 @@
-      <div class="main_block">
+<div class="main_block">
   <div class="left_block">
     <div class="avatar">
       <img src="<%= @user.avatar %>" alt="">
@@ -10,7 +10,7 @@
           <span>
             <%= @user.name %> <%= @user.surname %>
           </span>
-          <span class="online_status">
+        <span class="online_status">
             <%= online_status @user %>
           </span>
       </div>
@@ -33,17 +33,21 @@
     </div>
     <div class="posts">
       <% @user.posts.reverse.each do |post| %>
-        <% next if post.id.nil?%>
+        <% next if post.id.nil? %>
         <div class="post">
           <div class="post_main_block">
             <div class="title"><%= post.title %></div>
             <div class="title_border"></div>
             <div class="body"><%= post.body %></div>
             <% if can_current_user_change? post %>
-              <%= link_to '', edit_user_post_path(user_id: @user.id, id: post.id), class: 'edit_post_img'%>
+              <%= link_to '', edit_user_post_path(user_id: @user.id, id: post.id), class: 'edit_post_img' %>
               <%= link_to '', user_post_path(user_id: @user.id, id: post.id), method: "delete", class: 'delete_post_img' %>
             <% end %>
-            </div>
+          </div>
+
+          <%= render 'likes/like', type: post %>
+          <%= render 'likes/count', type: post %>
+
           <% if current_user %>
             <div class="add_comment">
               <%= form_for :comment, url: comments_path, html: {class: 'pure-form'} do |form| %>
@@ -66,7 +70,7 @@
               <%= render 'comments/comment_new', comment: comment %>
 
               <!--  comments for comments   -->
-              <%= render 'comments/comments', comment: comment  %>
+              <%= render 'comments/comments', comment: comment %>
               <!--  comments for comments   -->
             <% end %>
           </div>
@@ -77,8 +81,3 @@
     </div>
   </div>
 </div>
-
-
-<%= @user.errors.inspect %>
-      <div></div>
-      <%= @post.errors.inspect %>
