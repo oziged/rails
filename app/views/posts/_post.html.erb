@@ -8,6 +8,8 @@
       <%= link_to '', user_post_path(user_id: @user.id, id: @post.id), method: "delete", class: 'delete_post_img' %>
     <% end %>
   </div>
+
+
   <div class="post_comments">
     <% @post.comments.each do |comment| %>
       <div class="post_comment">
@@ -35,6 +37,7 @@
       </div>
     <% end %>
   </div>
+
   <% if current_user %>
     <div class="add_comment">
       <%= form_for [@post.comments.new], html: {class: 'pure-form'} do |form| %>

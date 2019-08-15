@@ -42,6 +42,9 @@ group :development, :test do
 end
 
 group :development do
+gem 'jquery-rails'
+
+  gem 'bootstrap', '~> 4.3.1'
   gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
   gem 'betterlorem'
   gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'

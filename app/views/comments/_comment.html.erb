@@ -26,3 +26,15 @@
     <%= link_to 'Редактировать комментарий', edit_comment_path(comment) %>
   <% end %>
 </div>
+
+<% if comment.images.any? %>
+<a class="btn btn-primary" data-toggle="collapse" href="#images<%= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+  Images
+</a>
+<% end %>
+
+<div class="collapse" id="images<%= comment.id %>">
+  <% comment.images.each do |image| %>
+    <div> <%= image_tag image.url %> </div>
+  <% end %>
+</div>

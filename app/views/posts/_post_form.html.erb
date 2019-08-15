@@ -6,6 +6,8 @@
   <%= form.text_area :body, placeholder: 'Расскажите что-нибудь..', maxlength: 5000 %>
 </div>
 
+<%= form.file_field :images, multiple: true %>
+
 <div class="actions">
   <%= form.submit class: 'pure-button pure-button-primary' %>
 </div>
