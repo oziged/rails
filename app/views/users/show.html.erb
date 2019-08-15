@@ -1,7 +1,7 @@
 <div class="main_block">
   <div class="left_block">
     <div class="avatar">
-      <img src="<%= @user.avatar %>" alt="">
+      <img src="<%= @user.get_avatar %>" alt="">
     </div>
   </div>
   <div class="right_block">
@@ -65,13 +65,8 @@
           <div class="post_comments">
             <% post.comments.reverse.each do |comment| %>
               <%= render 'comments/comment', comment: comment %>
-
-
               <%= render 'comments/comment_new', comment: comment %>
-
-              <!--  comments for comments   -->
               <%= render 'comments/comments', comment: comment %>
-              <!--  comments for comments   -->
             <% end %>
           </div>
 

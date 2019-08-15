@@ -20,8 +20,12 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}
 
-  def avatar
-    'https://miro.medium.com/max/800/0*QCRunR_VjAIrvkjC.png'
+  def get_avatar
+    if self.avatar.url.nil?
+      'https://miro.medium.com/max/800/0*QCRunR_VjAIrvkjC.png'
+    else
+      self.avatar.url
+    end
   end
 
   def has_like_on? type

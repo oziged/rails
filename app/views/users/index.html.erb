@@ -8,7 +8,7 @@
   <%= link_to user_path(user) do %>
   <div class="user_block">
     <div class="user_avatar">
-      <%= image_tag (user.avatar) %>
+      <%= image_tag (user.get_avatar) %>
     </div>
     <div class="user_info">
       <div><%= user.name %> <%= user.surname %></div>
