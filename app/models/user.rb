@@ -26,6 +26,7 @@ class User < ApplicationRecord
       'https://miro.medium.com/max/800/0*QCRunR_VjAIrvkjC.png'
     else
       self.avatar.url
+
     end
   end
 

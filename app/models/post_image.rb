@@ -1,3 +1,4 @@
 class PostImage < ApplicationRecord
-  belongs_to :user
+  mount_uploader :data, ImagesUploader
+  belongs_to :post
 end
