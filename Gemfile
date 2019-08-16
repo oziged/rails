@@ -43,7 +43,7 @@ end
 
 group :development do
 gem 'jquery-rails'
-
+  gem 'semantic-ui-sass'
   gem 'bootstrap', '~> 4.3.1'
   gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
   gem 'betterlorem'

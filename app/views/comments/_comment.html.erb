@@ -18,8 +18,9 @@
   </div>
 </div>
 
-<%= render 'likes/like', type: comment %>
-<%= render 'likes/count', type: comment %>
+<div data-likeable-type="Comment" data-likeable-id="<%= comment.id %>">
+  <%= render 'likes/like', type: comment %>
+</div>
 
 <div class="edit_comment_text">
   <% if can_current_user_change? comment %>

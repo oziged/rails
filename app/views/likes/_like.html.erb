@@ -1,10 +1,9 @@
-
 <% if current_user.nil? %>
   <%= link_to '<button>LIKE</button>'.html_safe, login_path %>
 <% elsif current_user.has_like_on? type %>
-  <%= button_to 'UNLIKE', like_path(id: type.likes.find_by(user_id: current_user.id)), method: 'delete'%>
+  <%= button_to 'UNLIKE', like_path(id: type.likes.find_by(user_id: current_user.id)), remote: true, method: 'delete'%>
 <% else %>
-  <%= form_for :like, url: likes_path, html: {class: 'pure-form'} do |form| %>
+  <%= form_for :like, url: likes_path, remote: true, html: {class: 'pure-form'} do |form| %>
     <%= form.hidden_field :has_like_on, value: current_user.has_like_on?(type) %>
     <%= form.hidden_field :likeable_type, value: type.class %>
     <%= form.hidden_field :likeable_id, value: type.id %>
@@ -12,5 +11,4 @@
   <% end %>
 <% end %>
 
-
-<!--|current_user.likes.find_by(likeable_type: type.class.to_s, likeable_id: type.id)-->
+<%= render :partial => 'likes/count', locals: {type: type} %>

@@ -1,15 +1,7 @@
-var likeable_id = (<%=raw @like.likeable_id.to_json %>);
-var like_id = (<%=raw @like.id.to_json %>);
-console.log(like_id);
-var add_form = document.querySelector(`input[value='${likeable_id}']`).parentNode;
-delete_form = document.createElement('div');
-delete_form.innerHTML = '<%= j button_to 'UNLIKE', like_path(id: @like.id), method: 'delete'%>';
+//var likeable_id = (<%#=raw @like.likeable_id.to_json %>);
+//var like_id = (<%#=raw @like.id.to_json %>);
 
-var likes_count_div = document.querySelector(`input[value='${likeable_id}']`).parentNode.nextElementSibling;
-likes_count_div.textContent++;
-
-add_form.innerHTML = '<%= j button_to 'UNLIKE', "/likes", method: 'delete'%>';
-add_form.action = '<%= like_path(id:@like.id) %>';
-add_form.method = 'delete';
-
-console.log('<%= j button_to 'UNLIKE', "/likes/34", method: 'delete'%>')
+//console.log(<%#=raw @like.likeable.to_json %>);
+//document.querySelector('.test-like').innerHTML = <%#= j render 'likes/like', type: @like.likeable %>
+document.querySelector('[data-likeable-type="<%= @like.likeable_type %>"][data-likeable-id="<%= @like.likeable_id %>"').innerHTML = "<%= j render :partial => 'likes/like', locals: {type: @like.likeable} %>"
+//console.log(document.querySelector('.test-like'))

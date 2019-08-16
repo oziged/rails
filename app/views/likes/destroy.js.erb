@@ -1,0 +1,2 @@
+document.querySelector('[data-likeable-type="<%= @like.likeable_type %>"][data-likeable-id="<%= @like.likeable_id %>"').innerHTML = "<%= j render :partial => 'likes/like', locals: {type: @like.likeable} %>"
+
