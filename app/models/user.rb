@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, ImagesUploader
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -21,6 +21,7 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}
 
   def get_avatar
+    # if self.avatar.nil?
     if self.avatar.url.nil?
       'https://miro.medium.com/max/800/0*QCRunR_VjAIrvkjC.png'
     else

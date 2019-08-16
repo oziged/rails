@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-  mount_uploaders :images, ImagesUploader
+  mount_uploader :image, ImagesUploader
 
   belongs_to :user
   belongs_to :commentable, polymorphic: true

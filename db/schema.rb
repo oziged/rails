@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_15_190605) do
+ActiveRecord::Schema.define(version: 2019_08_16_134520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_08_15_190605) do
     t.text "body"
     t.integer "commentable_id"
     t.string "commentable_type"
-    t.json "images"
+    t.string "image"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -35,13 +35,20 @@ ActiveRecord::Schema.define(version: 2019_08_15_190605) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "post_images", force: :cascade do |t|
+    t.string "data"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_images_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
     t.text "body"
-    t.json "images"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -60,5 +67,6 @@ ActiveRecord::Schema.define(version: 2019_08_15_190605) do
 
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "post_images", "posts"
   add_foreign_key "posts", "users"
 end

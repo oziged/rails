@@ -58,7 +58,7 @@
                   <%= form.text_area :body, placeholder: 'Текст комментария...' %>
                   <%= form.hidden_field :commentable_type, value: 'Post' %>
                   <%= form.hidden_field :commentable_id, value: post.id %>
-                  <%= form.file_field :images, multiple: true %>
+                  <%= form.file_field :image %>
                 </div>
                 <div class="actions">
                   <%= form.submit class: 'pure-button pure-button-primary' %>
@@ -67,19 +67,19 @@
             </div>
           <% end %>
 
-          <% if post.images.any? %>
-            <a class="btn btn-primary" data-toggle="collapse" href="#images<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Images
-            </a>
-          <% end %>
+          <%# if post.images.any? %>
+<!--            <a class="btn btn-primary" data-toggle="collapse" href="#images<%#= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">-->
+<!--              Images-->
+<!--            </a>-->
+          <%# end %>
 
-          <div class="collapse" id="images<%= post.id %>">
-            <div class="row">
-              <% post.images.each do |image| %>
-                <div class="col-2"> <%= image_tag image.url %> </div>
-              <% end %>
-            </div>
-          </div>
+<!--          <div class="collapse" id="images<%#= post.id %>">-->
+<!--            <div class="row">-->
+              <%# post.images.each do |image| %>
+<!--                <div class="col-2"> <%#= image_tag image.url %> </div>-->
+              <%# end %>
+<!--            </div>-->
+<!--          </div>-->
 
 
           <% if post.comments.any? %>

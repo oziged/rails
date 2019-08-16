@@ -28,14 +28,19 @@
   <% end %>
 </div>
 
-<% if comment.images.any? %>
-<a class="btn btn-primary" data-toggle="collapse" href="#images<%= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
-  Images
-</a>
-<% end %>
+<%# if comment.image? %>
+<!--<a class="btn btn-primary" data-toggle="collapse" href="#images<%#= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">-->
+<!--  Images-->
+<!--</a>-->
+<%# end %>
 
-<div class="collapse" id="images<%= comment.id %>">
-  <% comment.images.each do |image| %>
-    <div> <%= image_tag image.url %> </div>
-  <% end %>
-</div>
+<!--<div class="collapse" id="images<%#= comment.id %>">-->
+  <%# comment.images.each do |image| %>
+<!--    <div> <%#= image_tag image.url %> </div>-->
+  <%# end %>
+<!--</div>-->
+
+<% if comment.image? %>
+  <%= image_tag comment.image.url%>
+<!--  <img src="<%#= comment.image %>" alt="">-->
+<% end %>
