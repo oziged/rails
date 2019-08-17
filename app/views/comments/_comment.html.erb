@@ -13,34 +13,44 @@
     <div>
       <%= comment.body %></div>
   </div>
-  <div class="created_at">
-    <%= comment.created_at.localtime.strftime("%H:%M:%S") %>
-  </div>
 </div>
 
-<div data-likeable-type="Comment" data-likeable-id="<%= comment.id %>">
-  <%= render 'likes/like', type: comment %>
-</div>
+
 
 <div class="edit_comment_text">
-  <% if can_current_user_change? comment %>
-    <%= link_to 'Редактировать комментарий', edit_comment_path(comment) %>
+
+  <% if comment.image? %>
+    <div>
+      <a data-toggle="collapse" href="#comment_img<%= comment.id %>">
+        <%= fa_icon "image" %> 
+      </a>
+    </div>
   <% end %>
+
+  <div>
+    <a data-toggle="collapse" href="#comment<%= comment.id %>">
+      | <%= fa_icon "comments" %> | 
+    </a>
+  </div>
+
+  <% if can_current_user_change? comment %>
+    <div>  
+      <%= link_to (fa_icon "edit"), edit_comment_path(comment) %>
+    </div>
+  <% end %>
+
+  <div>
+    | <%= comment.created_at.localtime.strftime("%H:%M:%S") %> | 
+  </div>
+
+  <div data-likeable-type="Comment" data-likeable-id="<%= comment.id %>">
+    <%= render 'likes/like', type: comment %>
+  </div>
+
 </div>
 
-<%# if comment.image? %>
-<!--<a class="btn btn-primary" data-toggle="collapse" href="#images<%#= comment.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">-->
-<!--  Images-->
-<!--</a>-->
-<%# end %>
-
-<!--<div class="collapse" id="images<%#= comment.id %>">-->
-  <%# comment.images.each do |image| %>
-<!--    <div> <%#= image_tag image.url %> </div>-->
-  <%# end %>
-<!--</div>-->
-
 <% if comment.image? %>
+<div class="collapse" id="comment_img<%= comment.id %>">
   <%= image_tag comment.image.url%>
-<!--  <img src="<%#= comment.image %>" alt="">-->
+</div>
 <% end %>

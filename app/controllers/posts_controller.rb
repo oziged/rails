@@ -2,7 +2,7 @@ class PostsController < ApplicationController
     def create
         @user = User.find(params[:user_id])
         @post = @user.posts.new(post_params.except(:images))
-        @post.save
+        # @post.save
         #
         # respond_to do |format|
         #     if @post.save
@@ -12,15 +12,15 @@ class PostsController < ApplicationController
         #     end
         # end
         urls = []
-
-        post_params[:images].each do |post_image|
-            test  = @post.post_images.new(data: post_image)
-            p '*' * 100
-            p test
-            test.save
-            p test.errors
-            p '*' * 100
-
+        unless post_params[:images].nil?
+            post_params[:images].each do |post_image|
+                test  = @post.post_images.new(data: post_image)
+                p '*' * 100
+                p test
+                test.save
+                p test.errors
+                p '*' * 100
+            end
         end
         render plain: post_params[:images]
     end

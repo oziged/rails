@@ -97,6 +97,8 @@ a:visited {
       &_comments {
         width: 100%;
         margin: 5px 0;
+        border-top: 1px solid rgba(0,0,0,.2);
+        border-right: 1px solid rgba(0,0,0,.2);
         background-color: rgb(245, 245, 245);
       }
       &_comment {
@@ -105,15 +107,23 @@ a:visited {
         width: 100%;
         padding: 5px 10px;
         font-size: 12px;
+        border-left: 1px solid rgba(0,0,0,.2);
         &_avatar {
           width: 25px;
           height: 25px;
         }
       }
       .edit_comment_text {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
         font-size: 10px;
-        text-align: right;
-        padding: 0 5px 5px 0;
+        padding: 5px 5px 5px 0;
+        border-bottom: 1px solid rgba(0,0,0,.2);
+        border-left: 1px solid rgba(0,0,0,.2);
+        div {
+          margin-left: 5px;
+        }
       }
       .comment_right_block {
         width: 100%;
@@ -125,6 +135,9 @@ a:visited {
           font-size: 12px;
           width: 100%;
         }
+      }
+      .post_comment {
+        border-bottom: 1px dotted black;
       }
     }
   }
