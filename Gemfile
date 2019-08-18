@@ -43,6 +43,7 @@ end
 
 group :development do
   gem "font-awesome-rails"
+  gem "jquery-slick-rails"
   gem 'jquery-rails'
   gem 'semantic-ui-sass'
   gem 'bootstrap', '~> 4.3.1'
