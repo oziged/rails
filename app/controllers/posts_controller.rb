@@ -41,13 +41,24 @@ class PostsController < ApplicationController
     end
 
     def update
+        new_images = post_params[:images]
+        # render plain: new_images.count
         @post = Post.find(params[:id])
-        @post.update(post_params)
-        redirect_to @post.user
+        if @post.images.count + new_images.count > 5
+            # flash[:error] = "12312313"
+            redirect_to edit_user_post_path(@post), notice: '123123'
+        else 
+            @post.update(post_params.except(:images))
+            post_params[:images].each do |post_image|
+                @post.images.create(data: post_image)
+            end
+            redirect_to @post.user
+        end
     end
 
     def post_params
         params.require(:post).permit!
     end
+
 end
 

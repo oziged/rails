@@ -13,7 +13,7 @@ header {
 }
 
 img {
-    width: 100%;
+    max-width: 100%;
 }
 
 a, a:active {
@@ -39,4 +39,8 @@ li {
 
 .fa {
     font-size: 16px!important;
+}
+
+.relative { 
+    position: relative;
 }

@@ -46,17 +46,30 @@ a, a:active {
     color: black;
 }
 
+.modal {
+    // position: relative;
+}
+
 .modal-dialog {
-    width: 100%;
-    height: 100%;
+    position: relative;
+    width: 90%;
+    height: 90%;
     max-height: 100%;
     max-width: 100%;
-    margin: 0;
-    padding: 0;
+
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
   }
   
   .modal-content {
-    height: auto;
+    height: 100%;
+    width: 100%;
     min-height: 100%;
     border-radius: 0;
   }
+
+  

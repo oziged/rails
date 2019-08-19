@@ -20,6 +20,13 @@
 //= require jquery.slick
 
 
+console.log('1231232');
+console.log(document.querySelector('.notice'));
+document.querySelector('.notice').delay(1000).slideUp(200, function() {
+    console.log(1);
+    $(this).alert('close');
+});
+
 
 
 

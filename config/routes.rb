@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   root 'users#show'
   resources :comments
+  
   resources :users, except: [:index] do
     resources :posts
   end
+
+  resources :images, only: [:destroy]
 
   resources :likes
   resources :sessions, only: [:create]

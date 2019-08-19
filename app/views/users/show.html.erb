@@ -72,12 +72,20 @@
              Images
            </a>
            <div class="collapse" id="images<%= post.id %>">
-            <div class="row row_zero_margin">
+            <div>
                <% post.images.each do |image| %>
-                <div class="col-2dot4 col_img_wrapper">
-                  <i class="fa fa-trash"></i>
+                <div data-toggle="modal" data-target="#postImage<%= image.id %>">
+                  <!-- <i class="fa fa-trash del_img_icon"></i> -->
                   <%= image_tag image.data.url %> 
                 </div>
+                <div><%= link_to "delete#{image.id}", image_path(image), method: 'delete' %></div>
+
+                <div class="modal fade" id="postImage<%= image.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <%= image_tag image.data.url%>
+                  </div>
+                </div>
+
                <% end %>
             </div>
           </div>
@@ -110,21 +118,7 @@
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content img_full">
-        <!-- <div class="modal-header"> -->
-          <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
-            <!-- <span aria-hidden="true">&times;</span> -->
-          <!-- </button> -->
-        <!-- </div> -->
-            <h1>darova ebat</h1>
-        <!-- <div class="modal-body"> -->
-          <!-- ... -->
-        <!-- </div> -->
-        <!-- <div class="modal-footer"> -->
-          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-        <!-- </div> -->
+            <img src="https://i.imgur.com/pBR3XKj.png" style="" alt="">
       </div>
     </div>
 </div>
