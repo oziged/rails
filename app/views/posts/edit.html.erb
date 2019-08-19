@@ -1,6 +1,6 @@
-<% unless notice.nil? %>
+<% unless flash[:error].nil? %>
 <div class="alert alert-danger notice" role="alert">
-  <%= notice %>
+  <%= flash[:error] %>
 </div>
 <% end %>
 <div class="edit_post">

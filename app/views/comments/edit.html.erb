@@ -1,12 +1,9 @@
 <div class="edit_comment">
-  <a class="btn btn-primary" data-toggle="collapse" href="#comments " role="button" aria-expanded="false" aria-controls="collapseExample">
-    Add comment
-  </a>
   <%= form_for :comment, url: comment_path, method: 'patch', html: {class: 'pure-form'} do |form| %>
     <div class="field">
      <%= form.text_area :body, placeholder: 'Текст комментария...' %>
     </div>
-    <%= form.file_field :images, multiple: true %>
+    <%= form.file_field :image %>
 
     <div class="actions">
       <%= form.submit class: 'pure-button pure-button-primary' %>

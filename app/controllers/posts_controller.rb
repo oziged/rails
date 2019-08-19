@@ -2,7 +2,13 @@ class PostsController < ApplicationController
     def create
         @user = User.find(params[:user_id])
         @post = @user.posts.new(post_params.except(:images))
-        @post.save
+        if @post.save
+            flash[:success] = 'Post created'
+        else
+            flash[:error] = 'Title & Body can\'t be blank'
+        end
+        redirect_to root_path
+
         #
         # respond_to do |format|
         #     if @post.save
@@ -22,7 +28,11 @@ class PostsController < ApplicationController
                 p '*' * 100
             end
         end
-        render plain: post_params[:images]
+
+        p '*' * 100
+        puts 'work'
+        p '*' * 100
+        # render plain: post_params[:images]
     end
 
     def show
@@ -37,21 +47,24 @@ class PostsController < ApplicationController
 
     def edit
         @post = Post.find(params[:id])
-        # render plain: @post.inspect
     end
 
     def update
         new_images = post_params[:images]
-        # render plain: new_images.count
         @post = Post.find(params[:id])
-        if @post.images.count + new_images.count > 5
-            # flash[:error] = "12312313"
-            redirect_to edit_user_post_path(@post), notice: '123123'
+        if new_images.nil?
+            @post.update(post_params.except(:images))
+            flash[:success] = 'Post updated'
+            redirect_to @post.user
+        elsif @post.images.count + new_images.count > 5
+            flash[:error] = 'Max count of images > 5'
+            redirect_to edit_user_post_path(@post)
         else 
             @post.update(post_params.except(:images))
             post_params[:images].each do |post_image|
                 @post.images.create(data: post_image)
             end
+            flash[:success] = 'Post updated'
             redirect_to @post.user
         end
     end

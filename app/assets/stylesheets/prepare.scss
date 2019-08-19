@@ -1,34 +1,34 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 header {
-    width: 100%;
+  width: 100%;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 a, a:active {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 ul {
-    margin: 0;
-    margin-bottom: 0;
-    padding: 0;
+  margin: 0;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .pure-form {
@@ -38,9 +38,19 @@ li {
 }
 
 .fa {
-    font-size: 16px!important;
+  font-size: 16px;
 }
 
-.relative { 
-    position: relative;
+.relative {
+  position: relative;
+}
+
+.notice {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 999;
+}
+
+form {
 }

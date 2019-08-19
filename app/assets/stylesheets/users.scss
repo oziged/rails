@@ -9,6 +9,7 @@ a:visited {
   // justify-content: space-between;
 
   .left_block {
+    height: fit-content;
     width: 350px;
     padding: 10px;
     background-color: white;
@@ -62,7 +63,6 @@ a:visited {
 
     .post {
       width: 100%;
-      margin-bottom: 10px;
       &_main_block {
         position: relative;
         padding: 10px;
@@ -165,4 +165,29 @@ a:visited {
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.post_under_block {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .post_under_left_block, .post_under_right_block {
+    display: flex;
+    align-items: center;
+    i {
+      margin-right: 5px;
+    }
+  }
+
+  .post_under_right_block {
+    font-size: 12px;
+    div form {
+      margin-left: 5px;
+    }
+  }
+}
+
+div[data-toggle='modal'] {
+  position: relative;
 }

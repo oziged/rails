@@ -22,7 +22,13 @@ class CommentsController < ApplicationController
         redirect_to @comment.user
     end
 
+    def destroy_image
+        @comment = Comment.find(params[:id])
+        @comment.image.remove!
+        redirect_to @comment.get_post_author
+    end
+
     def comment_params
-        params.require(:comment).permit!
+            params.require(:comment).permit!
     end
 end

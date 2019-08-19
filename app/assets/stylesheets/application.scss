@@ -13,63 +13,73 @@
  *= require_tree .
  *= require_self
  */
-
- @import "font-awesome";
- @import "bootstrap";
- @import 'slick';
- @import 'slick-theme';
-
+@import "font-awesome";
+@import "bootstrap";
+@import 'slick';
+@import 'slick-theme';
 
 
 .btn {
-    width: 100%;
-    font-size: 12px;
-    margin: 5px 0;
- }
+  width: 100%;
+  font-size: 12px;
+  margin: 5px 0;
+}
 
 body {
-    font-family: 'Rubik', sans-serif;
-    background-color: #EDEEF0;
+  font-family: 'Rubik', sans-serif;
+  background-color: #EDEEF0;
 }
 
 .main_section, .container {
-    max-width: 900px;
+  max-width: 900px;
 }
 
 .main_section {
-    margin: 0 auto;
-    width: 100%;
+  margin: 0 auto;
+  width: 100%;
 }
 
 a, a:active {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .modal {
-    // position: relative;
+
 }
 
 .modal-dialog {
-    position: relative;
-    width: 90%;
-    height: 90%;
-    max-height: 100%;
-    max-width: 100%;
+  position: relative;
+  width: 90%;
+  height: 90%;
+  max-height: 100%;
+  max-width: 100%;
 
-    img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
-  
-  .modal-content {
-    height: 100%;
-    width: 100%;
-    min-height: 100%;
-    border-radius: 0;
-  }
+}
 
-  
+.modal-content {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  border-radius: 0;
+}
+
+.alert {
+  position: fixed;
+  top: 70px;
+  right: 10px;
+}
+
+.full_width {
+  width: 100%;
+}
+
+.fa {
+  font-size: 16px;
+}
