@@ -20,6 +20,18 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}
 
+  def self.find_or_create_from_auth_hash(auth_hash)
+    user = where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_create
+    user.update(
+        # password_digest: auth_hash.info.token,
+        name: '123',
+    )
+    # user = User.create(password_digest: '1234Qq', name: 'test', surname: 'test', email: '123@gmail.com')
+    p '*' * 100
+    p user.inspect
+    p '*' * 100
+  end
+
   def get_avatar
     # if self.avatar.nil?
     if self.avatar.url.nil?
@@ -29,6 +41,8 @@ class User < ApplicationRecord
 
     end
   end
+
+
 
   def has_like_on? type
     type.likes.where(user_id: self.id).exists?

@@ -42,6 +42,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'omniauth'
+  gem 'omniauth-facebook'
   gem "font-awesome-rails"
   gem "jquery-slick-rails"
   gem 'jquery-rails'

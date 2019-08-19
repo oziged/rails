@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :likes
   resources :sessions, only: [:create]
-
+  get '/auth/:provider/callback', to: 'sessions#create'
   delete 'comment_image', to: 'comments#destroy_image', as: 'comment_image'
   get 'search', to: 'users#index', as: 'search'
   get 'signup', to: 'users#new', as: 'signup'
