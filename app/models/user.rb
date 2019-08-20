@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  before_create :confirmation_token
+
   mount_uploader :avatar, ImagesUploader
 
   has_many :posts, dependent: :destroy
@@ -22,7 +24,7 @@ class User < ApplicationRecord
   def self.find_or_create_from_auth_hash(auth_hash)
     return nil if auth_hash.nil?
     user = User.where(provider: auth_hash.provider, uid: auth_hash.uid).first
-    user = User.new(provider: auth_hash.provider, uid: auth_hash.uid) if user.nil?
+    user = User.new(provider: auth_hash.provider, uid: auth_hash.uid)
     if auth_hash.provider == 'facebook'
       user.update(
           name: user.name || auth_hash.info.name.split(' ')[0],
@@ -44,6 +46,7 @@ class User < ApplicationRecord
           provider_img: auth_hash.info.picture_url
       )
     end
+    user.update(email_confirmed: true)
     user
   end
 
@@ -62,5 +65,16 @@ class User < ApplicationRecord
     type.likes.where(user_id: self.id).exists?
   end
 
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(:validate => false)
+  end
 
+  private
+  def confirmation_token
+    if self.confirm_token.blank?
+      self.confirm_token = SecureRandom.urlsafe_base64.to_s
+    end
+  end
 end

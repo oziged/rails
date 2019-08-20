@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :posts
   end
 
+  get 'confirm_email/:token', to: 'users#confirm_email', as: 'confirm_email'
+
   resources :images, only: [:destroy]
 
   resources :likes
@@ -13,9 +15,12 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   delete 'comment_image', to: 'comments#destroy_image', as: 'comment_image'
   get 'search', to: 'users#index', as: 'search'
+
   get 'signup', to: 'users#new', as: 'signup'
   post 'signup', to: 'users#create'
+
   get 'login', to: 'sessions#new', as: 'login'
   post 'login', to: 'sessions#create'
+
   get 'logout', to: 'sessions#destroy', as: 'logout'
 end
