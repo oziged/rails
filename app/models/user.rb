@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-
   has_secure_password
 
   scope :search_by_fullname, -> (input) { 
@@ -23,13 +22,19 @@ class User < ApplicationRecord
   def self.find_or_create_from_auth_hash(auth_hash)
     user = where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_create
     user.update(
-        # password_digest: auth_hash.info.token,
-        name: '123',
+        name: 'Eugene',
+        surname: 'Test',
+        email: auth_hash.uid + '@gmail.com',
+        password: '1234Qq',
+        password_confirmation: '1234Qq',
+        was_online: Time.now
     )
-    # user = User.create(password_digest: '1234Qq', name: 'test', surname: 'test', email: '123@gmail.com')
+    user.save
     p '*' * 100
-    p user.inspect
+    p user.errors
+    p auth_hash
     p '*' * 100
+    user
   end
 
   def get_avatar
