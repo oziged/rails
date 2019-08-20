@@ -1,4 +1,3 @@
-
 <%= form_with(model: user, local: true, url: @link, class: 'pure-form') do |form| %>
 
   <div class="field">
@@ -23,10 +22,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :email, 'E-mail' %>
-    <%= form.text_field :email %>
-  </div>
+  <% if user.provider.nil? %>
+    <div class="field">
+      <%= form.label :email, 'E-mail' %>
+      <%= form.text_field :email %>
+    </div>
+  <% end %>
 
   <% if user.errors.include?(:email) %>
     <div class="error_text">
@@ -34,10 +35,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, minlength: 6 %>
-  </div>
+  <% if user.provider.nil? %>
+    <div class="field">
+      <%= form.label :password %>
+      <%= form.password_field :password, minlength: 6 %>
+    </div>
+  <% else %>
+    <%= form.hidden_field :password, value: user.password_digest %>
+  <% end %>
 
   <% if user.errors.include?(:password) %>
     <div class="error_text">
@@ -45,10 +50,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, minlength: 6 %>
-  </div>
+  <% if user.provider.nil? %>
+    <div class="field">
+      <%= form.label :password_confirmation %>
+      <%= form.password_field :password_confirmation, minlength: 6 %>
+    </div>
+  <% else %>
+    <%= form.hidden_field :password_confirmation, value: user.password_digest %>
+  <% end %>
 
   <% if user.errors.include?(:password_confirmation) %>
     <div class="error_text">

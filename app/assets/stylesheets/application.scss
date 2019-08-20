@@ -15,8 +15,6 @@
  */
 @import "font-awesome";
 @import "bootstrap";
-@import 'slick';
-@import 'slick-theme';
 
 
 .btn {
@@ -82,4 +80,8 @@ a, a:active {
 
 .fa {
   font-size: 16px;
+}
+
+ul {
+  margin: 0;
 }

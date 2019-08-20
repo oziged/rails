@@ -43,6 +43,7 @@ end
 
 group :development do
   gem 'omniauth'
+  gem 'omniauth-linkedin-oauth2'
   gem 'omniauth-facebook'
   gem "font-awesome-rails"
   gem "jquery-slick-rails"

@@ -5,6 +5,8 @@
                 <%= link_to image_tag('logo_big.png', class: 'logo'), root_path %>
             </div>
             <div class="right_block">
+                <%= link_to "<li><i class='fa fa-facebook-square'></i></li>".html_safe, "/auth/facebook" %>
+                <%= link_to "<li><i class='fa fa-linkedin-square'></i></li>".html_safe, "/auth/linkedin" %>
                 <%= link_to "<li>Search</li>".html_safe, search_path %>
                 <%= link_to '<li>Login</li>'.html_safe, login_path %>
                 <%= link_to '<li>Registration</li>'.html_safe, signup_path %>

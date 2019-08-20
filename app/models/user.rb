@@ -6,53 +6,61 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_secure_password
 
-  scope :search_by_fullname, -> (input) { 
-    input = input.split(' ').map{|word|word.capitalize}.join(' ')
+  scope :search_by_fullname, -> (input) {
+    input = input.split(' ').map { |word| word.capitalize }.join(' ')
     User.where("CONCAT_WS(' ', name, surname) LIKE ? or CONCAT_WS(' ', surname, name) LIKE ?", "%#{input}%", "%#{input}%")
     # User.where("CONCAT_WS(' ', name, surname) LIKE ?", "%#{input}%").or(User.where("CONCAT_WS(' ', surname, name) LIKE ?", "%#{input}%"))
   }
 
   validates :name, presence: true
   validates :surname, presence: true
-  validates :password, format: { with: /\A.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*\z/}
-  validates :password_confirmation, format: { with: /\A.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*\z/}
+  validates :password, format: {with: /\A.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*\z/}
+  validates :password_confirmation, format: {with: /\A.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*\z/}
   validates :email, uniqueness: true
-  validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}
+  validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}
 
   def self.find_or_create_from_auth_hash(auth_hash)
-    user = where(provider: auth_hash.provider, uid: auth_hash.uid).first_or_create
-    user.update(
-        name: 'Eugene',
-        surname: 'Test',
-        email: auth_hash.uid + '@gmail.com',
-        password: '1234Qq',
-        password_confirmation: '1234Qq',
-        was_online: Time.now
-    )
-    user.save
-    p '*' * 100
-    p user.errors
-    p auth_hash
-    p '*' * 100
+    return nil if auth_hash.nil?
+    user = User.where(provider: auth_hash.provider, uid: auth_hash.uid).first
+    user = User.new(provider: auth_hash.provider, uid: auth_hash.uid) if user.nil?
+    if auth_hash.provider == 'facebook'
+      user.update(
+          name: user.name || auth_hash.info.name.split(' ')[0],
+          surname: user.surname || auth_hash.info.name.split(' ')[1],
+          email: auth_hash.uid + auth_hash.provider + '@gmail.com',
+          password: auth_hash.provider + auth_hash.uid + auth_hash.info.name.upcase,
+          password_confirmation: auth_hash.provider + auth_hash.uid + auth_hash.info.name.upcase,
+          was_online: Time.now,
+          provider_img: auth_hash.info.image + '?type=large&width=400&height=400'
+      )
+    elsif auth_hash.provider == 'linkedin'
+      user.update(
+          name: user.name || auth_hash.info.first_name,
+          surname: user.surname || auth_hash.info.last_name,
+          email: auth_hash.uid + auth_hash.provider + '@gmail.com',
+          password: auth_hash.provider + auth_hash.uid + auth_hash.info.first_name.upcase + '1',
+          password_confirmation: auth_hash.provider + auth_hash.uid + auth_hash.info.first_name.upcase + '1',
+          was_online: Time.now,
+          provider_img: auth_hash.info.picture_url
+      )
+    end
     user
   end
 
   def get_avatar
-    # if self.avatar.nil?
-    if self.avatar.url.nil?
+    if self.avatar.url.nil? && self.provider_img.nil?
       'https://miro.medium.com/max/800/0*QCRunR_VjAIrvkjC.png'
+    elsif self.avatar.url.nil?
+      self.provider_img
     else
       self.avatar.url
-
     end
   end
-
 
 
   def has_like_on? type
     type.likes.where(user_id: self.id).exists?
   end
-
 
 
 end
