@@ -5,12 +5,14 @@ class CommentsController < ApplicationController
   def create
     @user = current_user
     @comment = current_user.comments.new(comment_params)
+
     if @comment.save
+      ActionCable.server.broadcast 'comments_channel', div: (render partial: 'comments/comment', locals: {comment: @comment}), commentable_type: @comment.commentable_type, commentable_id: @comment.commentable_id
       post_author = @comment.get_post_author
       if post_author == current_user
-        redirect_to root_path
+        # redirect_to root_path
       else
-        redirect_to post_author
+        # redirect_to post_author
       end
     end
   end

@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
@@ -17,7 +18,6 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-//= require jquery.slick
 
 setTimeout(()=>{
     $('.notice').delay(4000).slideToggle(200, function() {

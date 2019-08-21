@@ -1,6 +1,6 @@
 <!--~~~<%#= comment.body %> || <%#= comment.user_id %>~~~-->
 
-<div class="post_comment">
+<div data-type="comment" data-id="<%= comment.id %>" class="post_comment">
   <div class="comment_left_block">
     <div class="post_comment_avatar">
       <%= image_tag comment.user.get_avatar %>
@@ -67,3 +67,6 @@
       <% end %>
   </div>
 </div>
+
+<%#= render 'comments/comment_new', comment: comment %>
+

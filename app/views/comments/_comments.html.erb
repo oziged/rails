@@ -6,6 +6,8 @@
 
       <% if comment.comments.any? %>
         <%= render 'comments/comments', comment: comment  %>
+      <% else %>
+        <ul></ul>
       <% end %>
     </li>
 <% end %>

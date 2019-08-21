@@ -1,3 +1,13 @@
+<button id="test"></button>
+
+<%= form_for :test, url: "/search", method: "get", remote: true do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+
 <% unless flash[:success].nil? %>
   <div class="alert alert-success notice" role="alert">
     <%= flash[:success] %>
@@ -45,7 +55,7 @@
     <div class="posts">
       <% @user.posts.reverse.each do |post| %>
         <% next if post.id.nil? %>
-        <div class="post">
+        <div data-type="post>" data-id="<%= post.id %>" class="post">
           <div class="post_main_block">
             <div class="title"><%= post.title %></div>
             <div class="title_border"></div>
@@ -88,7 +98,7 @@
 
 
           <div class="add_comment collapse" id="post<%= post.id %>">
-            <%= form_for :comment, url: comments_path, html: {class: 'pure-form'} do |form| %>
+            <%= form_for :comment, url: comments_path, html: {class: 'pure-form'}, remote: true do |form| %>
               <div class="field">
                 <%= form.text_area :body, placeholder: 'Текст комментария...' %>
                 <%= form.hidden_field :commentable_type, value: 'Post' %>
@@ -121,7 +131,7 @@
             </div>
 
 
-            <div class="post_comments collapse" id="comments">
+            <div data-id="<%= post.id %>" class="post_comments collapse" id="comments">
               <% post.comments.order('created_at DESC').each do |comment| %>
                 <%= render 'comments/comment', comment: comment %>
                 <%= render 'comments/comment_new', comment: comment %>
