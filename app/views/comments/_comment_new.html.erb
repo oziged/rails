@@ -1,13 +1,20 @@
 <% if current_user %>
 
-    <%= form_for :comment, url: comments_path, remote: true, html: {class: 'pure-form collapse', id:"comment#{comment.id}"}, data: {parent: '.posts'} do |form| %>
+  <%= form_for :comment, url: comments_path, remote: true, html: {class: ' collapse', id: "comment#{comment.id}"}, data: {parent: '.posts'} do |form| %>
     <div class="form-group">
-    <%= form.text_area :body, placeholder: 'Текст комментария...' %>
+      <%= form.text_area :body, placeholder: 'Текст комментария...', class: "form-control" %>
     </div>
-      <%= form.hidden_field :commentable_type, value: 'Comment' %>
-      <%= form.hidden_field :commentable_id, value: comment.id %>
-      <%= form.file_field :image %>
-      <%= form.submit class: 'pure-button pure-button-primary' %>
-    <% end %>
+    <%= form.hidden_field :commentable_type, value: 'Comment' %>
+    <%= form.hidden_field :commentable_id, value: comment.id %>
+    <div class="custom-file">
+      <label class="custom-file-label" for="customFile">Choose file</label>
+      <%= form.file_field :image, class: 'custom-file-input', id: 'customFile' %>
+    </div>
+    <%= form.submit class: 'pure-button pure-button-primary' %>
+  <% end %>
 
 <% end %>
+
+
+<!--<input type="file" class="custom-file-input" id="customFile">-->
+<!--</div>-->

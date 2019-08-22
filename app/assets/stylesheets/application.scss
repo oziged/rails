@@ -85,3 +85,17 @@ a, a:active {
 ul {
   margin: 0;
 }
+
+.form-control {
+  font-size: 12px;
+  border-radius: 0;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.custom-file-label {
+  border-radius: 0;
+  font-size: 12px;
+}
