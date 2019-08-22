@@ -134,7 +134,6 @@
             <div data-id="<%= post.id %>" class="post_comments collapse" id="comments">
               <% post.comments.order('created_at DESC').each do |comment| %>
                 <%= render 'comments/comment', comment: comment %>
-                <%= render 'comments/comment_new', comment: comment %>
                 <%= render 'comments/comments', comment: comment %>
               <% end %>
             </div>
