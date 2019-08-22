@@ -21,9 +21,9 @@ module UsersHelper
       'online'
     elsif
       offline < 3600
-      "#{offline/60} минут назад"
+      "#{offline/60} minutes ago"
     elsif offline < 86400
-      "#{offline/3600} часов назад"
+      "#{offline/3600} hours ago"
     else
       "#{Time.at(was_online).strftime("%d/%m/%Y")}"
     end

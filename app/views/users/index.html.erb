@@ -1,3 +1,4 @@
+<div class="search_block">
 <%= form_with url: search_path, method: :get, local: true, enforce_utf8: false, html: {class: 'pure-form'} do |f| %>
   <%= f.label :input, "Search for:" %>
   <%= f.text_field :input %>
@@ -5,15 +6,17 @@
 <% end %>
 <h1>Users</h1>
 <% @users.each do |user| %>
-  <%= link_to user_path(user) do %>
   <div class="user_block">
     <div class="user_avatar">
-      <%= image_tag (user.get_avatar) %>
+      <%= link_to image_tag(user.get_avatar), user_path(user) %>
     </div>
     <div class="user_info">
-      <div><%= user.name %> <%= user.surname %></div>
-      <div>online status : <%= online_status user %></div>
+      <div class="user_info_fullname">
+        <%= link_to user.name + ' ' + user.surname, user_path(user) %>
+      </div>
+      <div class="user_info_online_status">online status : <%= online_status user %></div>
     </div>
   </div>
-    <% end %>
+  <div class="user_block_hr"></div>
 <% end %>
+</div>

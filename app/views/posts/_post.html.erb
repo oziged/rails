@@ -29,7 +29,7 @@
     </div>
 
     <div class="post_under_right_block">
-      | <%= post.created_at.localtime.strftime("%H:%M:%S") %> |
+      | <%= created_or_updated post %> |
       <div data-likeable-type="Post" data-likeable-id="<%= post.id %>">
         <%= render 'likes/like', type: post %>
       </div>

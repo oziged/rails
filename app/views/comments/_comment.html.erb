@@ -36,7 +36,7 @@
   <% end %>
 
   <div>
-    | <%= comment.created_at.localtime.strftime("%H:%M:%S") %> |
+    | <%= created_or_updated comment %> |
   </div>
 
   <div data-likeable-type="Comment" data-likeable-id="<%= comment.id %>">

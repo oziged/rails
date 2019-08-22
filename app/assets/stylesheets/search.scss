@@ -1,11 +1,30 @@
 .user_block {
+  &:first_child {
+    margin-top: 0;
+  }
   display: flex;
+  margin: 8px 0;
   .user_avatar {
     width: 100px;
     img {
       border-radius: 50%;
       width: 100%;
     }
+  }
+  .user_info {
+    margin: 10px 0 0 10px;
+    &_fullname {
+
+    }
+    &_online_status {
+      font-size: 14px;
+    }
+  }
+  &_hr {
+    width: 95%;
+    margin: 0 auto;
+    height: 1px;
+    background-color:rgba(0,0,0,.1);
   }
 }
 
