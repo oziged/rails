@@ -4,6 +4,14 @@ module UsersHelper
     current_user && current_user.id == item[:user_id]
   end
 
+  def get_user_id
+    if params[:id].nil?
+      return current_user.id
+    else
+      params[:id]
+    end
+  end
+
 
   def online_status user
     was_online = DateTime.parse(user.was_online).to_i

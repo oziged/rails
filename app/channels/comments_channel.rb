@@ -1,8 +1,8 @@
 class CommentsChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "comments_channel"
+    stream_from "user_channel_#{params[:id]}"
     p '*' * 100
-    p params.inspect
+    p params[:id]
     p '*' * 100
   end
 

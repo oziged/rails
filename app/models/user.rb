@@ -22,9 +22,6 @@ class User < ApplicationRecord
   validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}
 
   def self.find_or_create_from_auth_hash(auth_hash)
-    p '*' * 100
-    p auth_hash
-    p '*' * 100
     return nil if auth_hash.nil?
     user = User.where(provider: auth_hash.provider, uid: auth_hash.uid).first
     user = User.new(provider: auth_hash.provider, uid: auth_hash.uid) if user.nil?
@@ -62,7 +59,6 @@ class User < ApplicationRecord
       self.avatar.url
     end
   end
-
 
   def has_like_on? type
     type.likes.where(user_id: self.id).exists?
