@@ -22,9 +22,12 @@ class User < ApplicationRecord
   validates :email, format: {with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i}
 
   def self.find_or_create_from_auth_hash(auth_hash)
+    p '*' * 100
+    p auth_hash
+    p '*' * 100
     return nil if auth_hash.nil?
     user = User.where(provider: auth_hash.provider, uid: auth_hash.uid).first
-    user = User.new(provider: auth_hash.provider, uid: auth_hash.uid)
+    user = User.new(provider: auth_hash.provider, uid: auth_hash.uid) if user.nil?
     if auth_hash.provider == 'facebook'
       user.update(
           name: user.name || auth_hash.info.name.split(' ')[0],
