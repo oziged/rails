@@ -1,56 +1,80 @@
-<div class="post">
+<div data-type="post" data-id="<%= post.id %>" class="post">
   <div class="post_main_block">
-    <div class="title"><%= @post.title %></div>
+    <div class="title"><%= post.title %></div>
     <div class="title_border"></div>
-    <div class="body"><%= @post.body %></div>
-    <% if can_current_user_change? @post %>
-      <%= link_to '', edit_user_post_path(user_id: @user.id, id: @post.id), class: 'edit_post_img'%>
-      <%= link_to '', user_post_path(user_id: @user.id, id: @post.id), method: "delete", class: 'delete_post_img' %>
+    <div class="body"><%= post.body %></div>
+    <% if can_current_user_change? post %>
+      <%= link_to '', edit_user_post_path(user_id: @user.id, id: post.id), class: 'edit_post_img' %>
+      <%= link_to '', user_post_path(user_id: @user.id, id: post.id), method: "delete", class: 'delete_post_img' %>
     <% end %>
   </div>
 
+  <div class="post_under_block">
+    <div class="post_under_left_block">
+      <% if current_user %>
+        <a data-toggle="collapse" href="#post<%= post.id %>">
+          <%= fa_icon "plus-square" %>
+        </a>
+      <% end %>
 
-  <div class="post_comments">
-    <% @post.comments.each do |comment| %>
-      <div class="post_comment">
-        <div class="comment_left_block">
-          <div class="post_comment_avatar">
-            <%= image_tag comment.user.avatar %>
-          </div>
-        </div>
-        <div class="comment_right_block">
-          <div>
-            <%= link_to comment.user.name, user_path(comment.user) %>
-          </div>
-          <div>
-            <%= comment.body %></div>
-        </div>
-        <div class="created_at">
-          <%= comment.created_at.localtime.strftime("%H:%M:%S")
-          %>
-        </div>
+      <% if post.images.any? %>
+        <a data-toggle="collapse" href="#images<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <%= fa_icon "image" %>
+        </a>
+      <% end %>
+
+      <a data-toggle="collapse" href="#comments<%= post.id %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+        <%= fa_icon "comments" %>
+      </a>
+    </div>
+
+    <div class="post_under_right_block">
+      | <%= post.created_at.localtime.strftime("%H:%M:%S") %> |
+      <div data-likeable-type="Post" data-likeable-id="<%= post.id %>">
+        <%= render 'likes/like', type: post %>
       </div>
-      <div class="edit_comment_text">
-        <% if can_current_user_change? comment %>
-          <%= link_to 'Редактировать комментарий', edit_comment_path(post) %>
+    </div>
+  </div>
+
+
+  <div class="add_comment collapse" id="post<%= post.id %>">
+    <%= form_for :comment, url: comments_path, html: {class: 'pure-form'}, remote: true do |form| %>
+      <div class="field">
+        <%= form.text_area :body, placeholder: 'Текст комментария...' %>
+        <%= form.hidden_field :commentable_type, value: 'Post' %>
+        <%= form.hidden_field :commentable_id, value: post.id %>
+        <%= form.file_field :image %>
+      </div>
+      <div class="actions">
+        <%= form.submit class: 'pure-button pure-button-primary' %>
+      </div>
+      </div>
+    <% end %>
+
+    <div class="collapse" id="images<%= post.id %>">
+      <div>
+        <% post.images.each do |image| %>
+          <div data-toggle="modal" data-target="#postImage<%= image.id %>">
+            <%= image_tag image.data.url, class: 'full_width' %>
+            <% if can_current_user_change?(image.post) %>
+              <div><%= link_to "<i class='fa fa-times'></i>".html_safe, image_path(image), method: 'delete', class: 'img_del' %></div>
+            <% end %>
+          </div>
+
+          <div class="modal fade" id="postImage<%= image.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <%= image_tag image.data.url %>
+            </div>
+          </div>
         <% end %>
       </div>
-    <% end %>
-  </div>
+    </div>
 
-  <% if current_user %>
-    <div class="add_comment">
-      <%= form_for [@post.comments.new], html: {class: 'pure-form'} do |form| %>
-        <div class="field">
-          <%= form.text_area :body, placeholder: 'Текст комментария...' %>
-          <%= form.hidden_field :commentable_type, value: 'Post' %>
-          <%= form.hidden_field :commentable_id, value: @post.id %>
-        </div>
-
-        <div class="actions">
-          <%= form.submit class: 'pure-button pure-button-primary' %>
-        </div>
+    <div data-id="<%= post.id %>" class="post_comments collapse" id="comments<%= post.id %>">
+      <% post.comments.order('created_at DESC').each do |comment| %>
+        <%= render 'comments/comment', comment: comment %>
+        <%= render 'comments/comments', comment: comment %>
       <% end %>
     </div>
-  <% end %>
-</div>
+
+    </div>

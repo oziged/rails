@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @post = @user.posts.new
   end
 
   def new

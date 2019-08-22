@@ -1,5 +1,3 @@
-<!--~~~<%#= comment.body %> || <%#= comment.user_id %>~~~-->
-
 <div data-type="comment" data-id="<%= comment.id %>" class="post_comment">
   <div class="comment_left_block">
     <div class="post_comment_avatar">
@@ -15,10 +13,7 @@
   </div>
 </div>
 
-
-
 <div class="edit_comment_text">
-
   <% if comment.image? %>
     <div>
       <a data-toggle="collapse" href="#commentImage<%= comment.id %>">
@@ -33,6 +28,7 @@
     </a>
   </div>
 
+  <%# if can_current_user_change? Comment.new(commentable: comment) %>
   <% if can_current_user_change? comment %>
     <div>
       <%= link_to (fa_icon "edit"), edit_comment_path(comment) %>
@@ -46,7 +42,6 @@
   <div data-likeable-type="Comment" data-likeable-id="<%= comment.id %>">
     <%= render 'likes/like', type: comment %>
   </div>
-
 </div>
 
 <% if comment.image? %>

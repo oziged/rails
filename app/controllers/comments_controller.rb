@@ -7,7 +7,11 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
 
     if @comment.save
-      ActionCable.server.broadcast "user_channel_#{@comment.get_post_author.id}", div: (render partial: 'comments/comment', locals: {comment: @comment}), commentable_type: @comment.commentable_type, commentable_id: @comment.commentable_id
+      ActionCable.server.broadcast "user_channel_#{@comment.get_post_author.id}",
+      type: 'comment',
+      div: (render partial: 'comments/comment', locals: {comment: @comment}),
+      commentable_type: @comment.commentable_type, commentable_id: @comment.commentable_id
+
       post_author = @comment.get_post_author
       if post_author == current_user
         # redirect_to root_path

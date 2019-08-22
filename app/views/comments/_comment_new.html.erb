@@ -1,7 +1,9 @@
 <% if current_user %>
 
-    <%= form_for :comment, url: comments_path, remote: true, html: {class: 'pure-form collapse', id:"comment#{comment.id}"} do |form| %>
-      <%= form.text_area :body, placeholder: 'Текст комментария...' %>
+    <%= form_for :comment, url: comments_path, remote: true, html: {class: 'pure-form collapse', id:"comment#{comment.id}"}, data: {parent: '.posts'} do |form| %>
+    <div class="form-group">
+    <%= form.text_area :body, placeholder: 'Текст комментария...' %>
+    </div>
       <%= form.hidden_field :commentable_type, value: 'Comment' %>
       <%= form.hidden_field :commentable_id, value: comment.id %>
       <%= form.file_field :image %>

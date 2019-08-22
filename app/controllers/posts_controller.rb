@@ -6,11 +6,14 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = @user.posts.new(post_params.except(:images))
     if @post.save
+      ActionCable.server.broadcast "user_channel_#{@post.user.id}",
+      type: 'post',
+      div: (render partial: 'posts/post', locals: {post: @post})
       flash[:success] = 'Post created'
     else
       flash[:error] = 'Title & Body can\'t be blank'
     end
-    redirect_to root_path
+    # redirect_to root_path
 
     #
     # respond_to do |format|
