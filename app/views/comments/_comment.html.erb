@@ -14,6 +14,11 @@
 </div>
 
 <div class="edit_comment_text">
+  <div>
+    <% if can_current_user_change? comment %>
+      <%= link_to (fa_icon "times-circle"), comment_path(comment), method: 'delete' %>
+  <% end %>
+  </div>
   <% if comment.image? %>
     <div>
       <a data-toggle="collapse" href="#commentImage<%= comment.id %>">

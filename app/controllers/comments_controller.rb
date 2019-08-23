@@ -28,15 +28,21 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
+
+    BroadcastUserChannelJob.perform_later @comment
     redirect_to @comment.get_post_author
+  end
+
+  def destroy
+    render plain: params.inspect
   end
 
   def destroy_image
     @comment = Comment.find(params[:id])
-    @comment.image.remove!
+    # @comment.image.remove!
     ActionCable.server.broadcast "user_channel_#{@comment.get_post_author.id}",
-    type: 'comment_img_del'
-    # redirect_to @comment.get_post_author
+      type: 'comment_img_del',
+      comment_id: @comment.id
   end
 
   def comment_params

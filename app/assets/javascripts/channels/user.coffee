@@ -11,6 +11,7 @@ $(document).on 'turbolinks:load', ->
     disconnected: ->
 
     received: (data) ->
+      console.log('12321321')
       switch data.type
         when 'post'
           $('.posts').prepend(data.div)
@@ -23,6 +24,18 @@ $(document).on 'turbolinks:load', ->
             post_comments_div.prepend(data.div)
         when 'comment_img_del'
           console.log('test')
-          # modal_deactivate = a = document.querySelector("[href='#commentImage37']")
-          # modal_deactivate.click()
-
+          modal_deactivate = document.querySelector("[href='#commentImage#{data.comment_id}']")
+          modal_img_div = document.querySelector("[data-target='#commentImageModal#{data.comment_id}'][data-toggle='modal']")
+          if getComputedStyle(modal_img_div).height != 'auto'
+            modal_deactivate.click()
+          setTimeout ->
+            modal_img_div.innerHTML = ''
+          , 600
+        when 'comment_update'
+          comment_parent_block = document.querySelector(".post_comment[data-id='#{data.comment_id}']").parentNode
+          comment_parent_block.style.opacity = 0
+          setTimeout ->
+            comment_parent_block.innerHTML = data.div.comment + data.div.subcomments
+            comment_parent_block.style.opacity = 1
+          , 1000
+#          document.querySelector(".post_comment[data-id='#{data.comment_id}']").parentNode.innerHTML = data.div.comment + data.div.subcomments
