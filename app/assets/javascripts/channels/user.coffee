@@ -35,7 +35,8 @@ $(document).on 'turbolinks:load', ->
           comment_parent_block = document.querySelector(".post_comment[data-id='#{data.comment_id}']").parentNode
           comment_parent_block.style.opacity = 0
           setTimeout ->
-            comment_parent_block.innerHTML = data.div.comment + data.div.subcomments
+            comment_parent_block.innerHTML = data.div.comment
             comment_parent_block.style.opacity = 1
           , 1000
-#          document.querySelector(".post_comment[data-id='#{data.comment_id}']").parentNode.innerHTML = data.div.comment + data.div.subcomments
+        when 'commend_del'
+          console.log(123)

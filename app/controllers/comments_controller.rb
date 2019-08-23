@@ -34,7 +34,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    render plain: params.inspect
+    @comment = Comment.find(params[:id])
+    ActionCable.server.broadcast "user_channel_#{@comment.get_post_author.id}",
+                                 type: 'comment_del',
+                                 comment_id: @comment.id
   end
 
   def destroy_image
