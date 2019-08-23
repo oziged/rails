@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :images, only: [:destroy]
   resources :likes
   resources :sessions, only: [:create]
+  
   delete 'comment_image', to: 'comments#destroy_image', as: 'comment_image'
   get 'search', to: 'users#index', as: 'search'
 

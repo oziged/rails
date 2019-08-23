@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if params[:input]
       @users = User.search_by_fullname(params[:input])
     else
-      @users = User.all
+      @users = User.all.paginate(:page => params[:page], :per_page => 10)
     end
   end
 

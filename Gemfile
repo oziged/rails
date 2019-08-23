@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'will_paginate', '~> 3.1.0'
   gem 'redis', '~> 3.0'
   gem 'omniauth'
   gem 'omniauth-linkedin-oauth2'

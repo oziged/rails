@@ -34,7 +34,9 @@ class CommentsController < ApplicationController
   def destroy_image
     @comment = Comment.find(params[:id])
     @comment.image.remove!
-    redirect_to @comment.get_post_author
+    ActionCable.server.broadcast "user_channel_#{@comment.get_post_author.id}",
+    type: 'comment_img_del'
+    # redirect_to @comment.get_post_author
   end
 
   def comment_params

@@ -21,3 +21,8 @@ $(document).on 'turbolinks:load', ->
           if (data.commentable_type == 'Post')
             post_comments_div = $('.post_comments[data-id=' + data.commentable_id + ']')
             post_comments_div.prepend(data.div)
+        when 'comment_img_del'
+          console.log('test')
+          # modal_deactivate = a = document.querySelector("[href='#commentImage37']")
+          # modal_deactivate.click()
+
