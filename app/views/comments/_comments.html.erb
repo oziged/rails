@@ -1,13 +1,13 @@
-<ul style="margin: 0 0 0 30px;">
+<%= render 'comments/comment', comment: comment %>
+
+<ul class="subcoments" style="margin: 0 0 0 30px;">
   <% comment.comments.reverse.each do |comment| %>
-    <li>
       <%= render 'comments/comment', comment: comment %>
 
       <% if comment.comments.any? %>
         <%= render 'comments/comments', comment: comment  %>
       <% else %>
-        <ul style="margin: 0 0 0 30px;"></ul>
+<!--        <ul class="subcomments" style="margin: 0 0 0 30px;"></ul>-->
       <% end %>
-    </li>
 <% end %>
 </ul>

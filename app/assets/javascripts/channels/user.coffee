@@ -38,5 +38,5 @@ $(document).on 'turbolinks:load', ->
             comment_parent_block.innerHTML = data.div.comment
             comment_parent_block.style.opacity = 1
           , 1000
-        when 'commend_del'
+        when 'comment_del'
           console.log(123)
