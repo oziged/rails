@@ -32,11 +32,15 @@ $(document).on 'turbolinks:load', ->
             modal_img_div.innerHTML = ''
           , 600
         when 'comment_update'
-          comment_parent_block = document.querySelector(".post_comment[data-id='#{data.comment_id}']").parentNode
-          comment_parent_block.style.opacity = 0
+          comment = document.querySelector(".comment_main_#{data.comment_id}")
+          comment.style.opacity = 0
           setTimeout ->
-            comment_parent_block.innerHTML = data.div.comment
-            comment_parent_block.style.opacity = 1
+            comment.innerHTML = data.div.comment
+            comment.style.opacity = 1
           , 1000
         when 'comment_del'
-          console.log(123)
+          comment = document.querySelector(".comment_full_#{data.comment_id}")
+          comment.style.opacity = 0
+          setTimeout -> 
+            comment.remove()
+          , 1000
