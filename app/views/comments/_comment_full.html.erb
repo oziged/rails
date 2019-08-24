@@ -10,11 +10,6 @@
 <ul class="subcomments_<%= comment.id %>" style="margin: 0 0 0 30px;">
   <% comment.comments.reverse.each do |comment| %>
       <%= render 'comments/comment_full', comment: comment %>
-
-      <% if comment.comments.any? %>
-        <%= render 'comments/comments', comment: comment  %>
-      <% else %>
-      <% end %>
 <% end %>
 </ul>
 <% end %>

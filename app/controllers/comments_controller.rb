@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       ActionCable.server.broadcast "user_channel_#{@comment.get_post_author.id}",
-      type: 'comment',
+      type: 'comment_create',
       div: (render partial: 'comments/comment_full', locals: {comment: @comment}),
       commentable_type: @comment.commentable_type, commentable_id: @comment.commentable_id
 

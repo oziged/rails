@@ -13,9 +13,9 @@ $(document).on 'turbolinks:load', ->
     received: (data) ->
       console.log('12321321')
       switch data.type
-        when 'post'
+        when 'post_create'
           $('.posts').prepend(data.div)
-        when 'comment'
+        when 'comment_create'
           if (data.commentable_type == 'Comment')
             comment_div = $('[data-type=comment][data-id=' + data.commentable_id + ']')
             $(".subcomments_#{data.commentable_id}").prepend(data.div);

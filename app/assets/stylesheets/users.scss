@@ -69,28 +69,32 @@ a:visited {
         border-radius: 5px;
         border-bottom: 1px solid rgb(218, 218, 218);
         .title_border {
-          margin: 5px 0;
+          margin: 4px 0;
           width: 100%;
           opacity: .1;
           border-bottom: 1px solid black;
         }
         .delete_post_img {
           position: absolute;
-          width: 20px;
-          height: 20px;
           right: 10px;
           top: 10px;
-          background-size: cover;
-          background-image: url('https://c7.uihere.com/icons/705/357/295/bin-delete-empty-junk-remove-trash-icon-05072d5c8a4d895ba836dae3f1e6f2f1.png');
+          .fa-trash {
+            font-size: 20px;
+            &:hover {
+              color: red;
+            }
+          }
         }
         .edit_post_img {
           position: absolute;
-          width: 17px;
-          height: 17px;
-          right: 40px;
-          top: 10px;
-          background-size: cover;
-          background-image: url('https://image.flaticon.com/icons/png/128/61/61456.png');
+          right: 33px;
+          top: 11px;
+          .fa-edit {
+            font-size: 20px;
+            &:hover {
+              color: #0078e7;
+            }
+          }
         }
       }
       &_comments {

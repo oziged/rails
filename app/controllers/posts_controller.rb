@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     @post = @user.posts.new(post_params.except(:images))
     if @post.save
       ActionCable.server.broadcast "user_channel_#{@post.user.id}",
-      type: 'post',
+      type: 'post_create',
       div: (render partial: 'posts/post', locals: {post: @post})
       flash[:success] = 'Post created'
     else
