@@ -18,7 +18,7 @@ $(document).on 'turbolinks:load', ->
         when 'comment'
           if (data.commentable_type == 'Comment')
             comment_div = $('[data-type=comment][data-id=' + data.commentable_id + ']')
-            $(comment_div.next().next().next().next()).prepend(data.div)
+            $(".subcomments_#{data.commentable_id}").prepend(data.div);
           if (data.commentable_type == 'Post')
             post_comments_div = $('.post_comments[data-id=' + data.commentable_id + ']')
             post_comments_div.prepend(data.div)

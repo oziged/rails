@@ -1,4 +1,5 @@
-<ul class="main_comment">
+<ul class="comment_full_<%= comment.id %>">
+  <div class="comment_main_<%= comment.id %>">
 <div data-type="comment" data-id="<%= comment.id %>" class="post_comment">
   <div class="comment_left_block">
     <div class="post_comment_avatar">
@@ -68,9 +69,22 @@
       <% end %>
   </div>
 </div>
+  </div>
 
 <%= render 'comments/comment_new', comment: comment %>
-<ul style="margin: 0 0 0 30px;"></ul>
+<% unless comment.comments.any? %>
+<ul class="subcomments_<%= comment.id %>" style="margin: 0 0 0 30px;"></ul>
+<% else %>
+<ul class="subcomments_<%= comment.id %>" style="margin: 0 0 0 30px;">
+  <% comment.comments.reverse.each do |comment| %>
+      <%= render 'comments/comment', comment: comment %>
 
+      <% if comment.comments.any? %>
+        <%= render 'comments/comments', comment: comment  %>
+      <% else %>
+      <% end %>
+<% end %>
+</ul>
+<% end %>
 
 </ul>
