@@ -36,15 +36,15 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     ActionCable.server.broadcast "user_channel_#{@comment.get_post_author.id}",
-                                 type: 'comment_del',
+                                 type: 'comment_delete',
                                  comment_id: @comment.id
   end
 
   def destroy_image
     @comment = Comment.find(params[:id])
-    # @comment.image.remove!
+    @comment.image.remove!
     ActionCable.server.broadcast "user_channel_#{@comment.get_post_author.id}",
-      type: 'comment_img_del',
+      type: 'comment_img_delete',
       comment_id: @comment.id
   end
 

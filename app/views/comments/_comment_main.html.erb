@@ -29,7 +29,7 @@
   
     <div>
       <a data-toggle="collapse" href="#comment<%= comment.id %>">
-        | <%= fa_icon "comments" %> |
+        | <%= fa_icon "plus" %> |
       </a>
     </div>
   
@@ -57,13 +57,13 @@
           <div><%= link_to "<i class='fa fa-times'></i>".html_safe, comment_image_path(id: comment.id), method: 'delete', class: 'img_del' %></div>
         <% end %>
       </div>
+      <div class="modal fade" id="commentImageModal<%= comment.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <% unless comment.image.url.nil? %>
+          <%= image_tag comment.image.url %>
+            <% end %>
+        </div>
+      </div>
     </div>
   <% end %>
   
-  <div class="modal fade" id="commentImageModal<%= comment.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <% unless comment.image.url.nil? %>
-      <%= image_tag comment.image.url %>
-        <% end %>
-    </div>
-  </div>

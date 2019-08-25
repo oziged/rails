@@ -1,5 +1,7 @@
 <div data-type="post" data-id="<%= post.id %>" class="post">
+  <div class="post_main_<%= post.id %>">
   <%= render 'posts/post_main', post: post %>
+  </div>
     <div data-id="<%= post.id %>" class="post_comments collapse" id="comments<%= post.id %>">
       <% post.comments.order('created_at DESC').each do |comment| %>
         <%#= render 'comments/comment', comment: comment %>

@@ -1,4 +1,5 @@
-<div class="post_main_block">
+
+    <div class="post_top_block">
     <div class="title"><%= post.title %></div>
     <div class="title_border"></div>
     <div class="body"><%= post.body %></div>
@@ -51,20 +52,7 @@
     <% end %>
 
     <div class="collapse" id="images<%= post.id %>">
-      <div>
         <% post.images.each do |image| %>
-          <div data-toggle="modal" data-target="#postImage<%= image.id %>">
-            <%= image_tag image.data.url, class: 'full_width' %>
-            <% if can_current_user_change?(image.post) %>
-              <div><%= link_to "<i class='fa fa-times'></i>".html_safe, image_path(image), method: 'delete', class: 'img_del' %></div>
-            <% end %>
-          </div>
-
-          <div class="modal fade" id="postImage<%= image.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <%= image_tag image.data.url %>
-            </div>
-          </div>
+          <%= render 'images/image', image: image %>
         <% end %>
-      </div>
     </div>

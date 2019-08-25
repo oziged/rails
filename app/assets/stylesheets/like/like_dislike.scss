@@ -1,11 +1,10 @@
-.button-to-like {
+.button-to-like, .button-to-dislike {
     // position: absolute;
     // top: -30px;
     // right: 10px;
     height: 20px;
     width: auto;
     font-size: 10px;
-    border: 2px solid darkgrey;
     background-color: transparent;
     text-decoration: none;
     vertical-align: middle;
@@ -25,6 +24,14 @@
       background-color: transparent;
   
     }
+  }
+
+  .button-to-like {
+    border: 2px solid rgb(192, 189, 189);
+  }
+
+  .button-to-dislike {
+    border-color: #0078e7;
   }
   
   

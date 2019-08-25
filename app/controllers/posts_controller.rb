@@ -6,9 +6,6 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = @user.posts.new(post_params.except(:images))
     if @post.save
-      ActionCable.server.broadcast "user_channel_#{@post.user.id}",
-      type: 'post_create',
-      div: (render partial: 'posts/post', locals: {post: @post})
       flash[:success] = 'Post created'
     else
       flash[:error] = 'Title & Body can\'t be blank'
@@ -30,6 +27,9 @@ class PostsController < ApplicationController
         @post.images.create(data: post_image)
       end
     end
+    ActionCable.server.broadcast "user_channel_#{@post.user.id}",
+    type: 'post_create',
+    div: (render partial: 'posts/post_full', locals: {post: @post})
   end
 
   def show
@@ -37,8 +37,13 @@ class PostsController < ApplicationController
 
   def destroy
     @user = User.find(params[:user_id])
-    @user.posts.find(params[:id]).destroy
-    redirect_to @user
+    @post = @user.posts.find(params[:id])
+    ActionCable.server.broadcast "user_channel_#{@post.user_id}",
+    type: 'post_delete',
+    post_id: @post.id
+    @post.destroy
+
+    # redirect_to @user
   end
 
   def edit
@@ -63,6 +68,7 @@ class PostsController < ApplicationController
       flash[:success] = 'Post updated'
       redirect_to @post.user
     end
+    BroadcastUserChannelJob.perform_later @post
   end
 
   def post_params

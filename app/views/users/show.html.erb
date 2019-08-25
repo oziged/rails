@@ -44,7 +44,7 @@
     </div>
     <div class="posts">
       <% @user.posts.reverse.each do |post| %>
-        <%= render 'posts/post', post:post %>
+        <%= render 'posts/post_full', post:post %>
       <% end %>
     </div>
   </div>
