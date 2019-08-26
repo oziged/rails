@@ -37,10 +37,6 @@ body {
   width: 100%;
 }
 
-a, a:active {
-  text-decoration: none;
-  color: black;
-}
 
 .modal {
 
@@ -84,6 +80,11 @@ a, a:active {
 
 ul {
   margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .form-control {

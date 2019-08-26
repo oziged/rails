@@ -1,8 +1,23 @@
 .edit_comment {
+  width: 100%;
   margin-top: 10px;
+  max-width: 900px;
+  .attachments {
+    position: relative;
+    width: fit-content;
+  }
   input, textarea {
     width: 100%;
     margin-bottom: 5px;
   }
 }
 
+.attachments {
+  .comment_img_edit {
+    max-height: 200px;
+  }
+}
+
+.comment_main {
+  margin-bottom: 4px;
+}

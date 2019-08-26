@@ -51,19 +51,24 @@ class PostsController < ApplicationController
   end
 
   def update
+    JSON.parse(params[:images_to_delete]).each do |id|
+      image = Image.find(id)
+      image.data.remove!
+      image.destroy
+    end
     new_images = post_params[:images]
     @post = Post.find(params[:id])
     if new_images.nil?
       @post.update(post_params.except(:images))
       flash[:success] = 'Post updated'
       redirect_to @post.user
-    elsif @post.images.count + new_images.count > 5
-      flash[:error] = 'Max count of images > 5'
-      redirect_to edit_user_post_path(@post)
     else
+      count = @post.images.count
       @post.update(post_params.except(:images))
       post_params[:images].each do |post_image|
+        next if count == 5
         @post.images.create(data: post_image)
+        count += 1
       end
       flash[:success] = 'Post updated'
       redirect_to @post.user

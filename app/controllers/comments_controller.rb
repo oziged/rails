@@ -28,7 +28,9 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
-
+    if params[:del] == 'true'
+      @comment.update(image: '')
+    end
     BroadcastUserChannelJob.perform_later @comment
     redirect_to @comment.get_post_author
   end

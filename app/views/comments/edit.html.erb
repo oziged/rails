@@ -4,7 +4,12 @@
      <%= form.text_area :body, placeholder: 'Текст комментария...' %>
     </div>
     <%= form.file_field :image %>
-
+    <div class="attachments">
+      <% unless @comment.image.url.nil? %>
+      <%= image_tag @comment.image.url, class: 'comment_img_edit' %>
+      <i class='fa fa-times img_del' onclick=clearAttachments()></i>
+    <% end %>
+    </div>
     <div class="actions">
       <%= form.submit class: 'pure-button pure-button-primary' %>
     </div>

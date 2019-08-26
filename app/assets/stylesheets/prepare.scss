@@ -25,6 +25,10 @@ a, a:active {
   color: black;
 }
 
+a:focus {
+  text-decoration: none;
+}
+
 ul {
   margin: 0;
   margin-bottom: 0;
