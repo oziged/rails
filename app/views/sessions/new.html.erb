@@ -2,7 +2,7 @@
  <% error_class = 'error_class'%>
 <% end %>
 
-<%= form_with(model: @user, local: true, url: login_path, class: 'pure-form') do |form| %>
+<%= form_with(model: @user, local: true, url: login_path, class: 'pure-form login_form') do |form| %>
   <div class="field">
     <%= form.label :email %>
     <%= form.text_field :email, class: error_class %>

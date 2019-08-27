@@ -150,10 +150,10 @@ a:visited {
 }
 
 .form_edit {
+  margin: 20px auto;
   width: 50%;
-  margin: 0 auto;
   a[data-method="delete"] {
-    margin-top: 10px;
+    margin-top: 5px;
     width: 100%;
   }
 }
@@ -188,9 +188,6 @@ a:visited {
 
   .post_under_right_block {
     font-size: 12px;
-    div form {
-      margin-left: 5px;
-    }
   }
 }
 
@@ -204,7 +201,7 @@ div[data-toggle='modal'] {
 
 .search_block {
   max-width: 500px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 ul.pagination {

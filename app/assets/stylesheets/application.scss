@@ -103,3 +103,12 @@ a {
 .modal-open .modal {
   overflow: hidden;
 }
+
+
+.page-link:focus {
+  box-shadow: none;
+}
+
+a:hover {
+  text-decoration: none;
+}

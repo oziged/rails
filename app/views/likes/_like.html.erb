@@ -1,5 +1,5 @@
 <% if current_user.nil? %>
-  <%= link_to '<button>LIKE</button>'.html_safe, login_path %>
+  <%= link_to "<button class='button-to-like'>LIKE</button>".html_safe, login_path %>
 <% elsif current_user.has_like_on? type %>
   <%= button_to "LIKE | #{type.likes.count}", like_path(id: type.likes.find_by(user_id: current_user.id)), class: 'button-to-dislike', remote: true, method: 'delete'%>
 <% else %>

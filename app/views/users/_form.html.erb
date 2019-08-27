@@ -1,7 +1,7 @@
 <%= form_with(model: user, local: true, url: @link, class: 'pure-form') do |form| %>
 
   <div class="field">
-    <%= form.label :name, 'Имя' %>
+    <%= form.label :name, 'Firstname' %>
     <%= form.text_field :name, maxlength: 15 %>
   </div>
 
@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :surname, 'Фамилия' %>
+    <%= form.label :surname, 'Lastname' %>
     <%= form.text_field :surname, maxlength: 15 %>
   </div>
 
   <% if user.errors.include?(:surname) %>
     <div class="error_text">
-      Обязательный пункт*
+      Mandatory item*
     </div>
   <% end %>
 
@@ -31,7 +31,7 @@
 
   <% if user.errors.include?(:email) %>
     <div class="error_text">
-      Формат почты невереный
+      Invalid email
     </div>
   <% end %>
 
@@ -46,7 +46,7 @@
 
   <% if user.errors.include?(:password) %>
     <div class="error_text">
-      Пароли должны совпадать, быть длинее 6 символов, содержать цифры, прописные и заглавные буквы
+      Passwords must match, be longer than 6 characters, contain numbers, uppercase and lowercase letters
     </div>
   <% end %>
 
@@ -61,7 +61,7 @@
 
   <% if user.errors.include?(:password_confirmation) %>
     <div class="error_text">
-      Пароли должны совпадать и быть длинее 6 символов, содержать цифры, прописные и заглавные буквы
+      Passwords must match, be longer than 6 characters, contain numbers, uppercase and lowercase letters
     </div>
   <% end %>
 
@@ -69,8 +69,6 @@
     <label class="custom-file-label" for="customFile">Upload avatar</label>
     <%= form.file_field :avatar, class: 'custom-file-input', id: 'customFile' %>
   </div>
-
-  <%#= form.file_field :avatar %>
 
   <div class="actions">
     <%= form.submit class: 'pure-button pure-button-primary submit_form' %>

@@ -11,10 +11,10 @@ class PostsController < ApplicationController
               @post.images.create(data: post_image)
             end
           end
-          NewPostJob.perform_later @post
-          # ActionCable.server.broadcast "user_channel_#{@post.user.id}",
-          #   type: 'post_create',
-          #   div: (render partial: 'posts/post_full', locals: {post: @post})
+          # NewPostJob.perform_later @post
+          ActionCable.server.broadcast "user_channel_#{@post.user.id}",
+            type: 'post_create',
+            div: (render partial: 'posts/post_full', locals: {post: @post})
     else
       respond_to do |format|
         format.js { render 'posts/create_error' }

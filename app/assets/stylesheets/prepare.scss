@@ -10,6 +10,7 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
+  padding: 0!important;
 }
 
 header {
@@ -18,11 +19,6 @@ header {
 
 img {
   max-width: 100%;
-}
-
-a, a:active {
-  text-decoration: none;
-  color: black;
 }
 
 a:focus {
