@@ -10,15 +10,15 @@
 </div>
 
 <% if @post.images.any? %>
- <div class="attachments old">
+ <div class="attachments old flex">
     <% @post.images.each do |image| %>
-     <div class="relative image" id="<%= image.id %>">
+     <div class="relative fit_content attachments_image image" id="<%= image.id %>">
          <!-- <i class="fa fa-trash del_img_icon"></i> -->
-        <%= image_tag image.data.url %> 
+        <%= image_tag image.data.url, class: 'post_img_edit' %> 
         <i class='fa fa-times img_del' onclick=clearPostAttachment(this)></i>
      </div>
 
     <% end %>
  </div>
- <div class="attachments new"></div>
+ <div class="attachments new flex"></div>
 <% end %>

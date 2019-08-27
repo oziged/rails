@@ -10,17 +10,6 @@ class PostsController < ApplicationController
     else
       flash[:error] = 'Title & Body can\'t be blank'
     end
-    # redirect_to root_path
-
-    #
-    # respond_to do |format|
-    #     if @post.save
-    #         format.js { render :action => "create" }
-    #     else
-    #         format.js { render :action => "create_error" }
-    #     end
-    # end
-    #
     urls = []
     unless post_params[:images].nil?
       post_params[:images].each do |post_image|
@@ -42,8 +31,6 @@ class PostsController < ApplicationController
     type: 'post_delete',
     post_id: @post.id
     @post.destroy
-
-    # redirect_to @user
   end
 
   def edit
@@ -51,10 +38,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    JSON.parse(params[:images_to_delete]).each do |id|
-      image = Image.find(id)
-      image.data.remove!
-      image.destroy
+    unless params[:images_to_delete].nil?
+      JSON.parse(params[:images_to_delete]).each do |id|
+        image = Image.find(id)
+        image.data.remove!
+        image.destroy
+      end  
     end
     new_images = post_params[:images]
     @post = Post.find(params[:id])

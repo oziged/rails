@@ -8,17 +8,20 @@ document.addEventListener('turbolinks:load',()  => {
         let inputs = document.querySelectorAll("input[type='file']")
         inputs.forEach(input => {
             input.addEventListener('change', e => {
-                let file = e.target.files[0];
-                let reader = new FileReader();
-                let img = document.createElement('img');
-                img.className = 'comment_img_edit'
-                let attachments_div = document.querySelector('.attachments');
-                reader.readAsDataURL(file);
-                reader.onload = () => {
-                    img.src = reader.result;
-                    attachments_div.innerHTML = '';
-                    attachments_div.appendChild(img);
-                }
+                let attachments_div = document.querySelector('.attachments.new');
+                attachments_div.innerHTML = '';
+                [].forEach.call(e.target.files,(file, index) => {
+                    if (index > 5) return;
+                    let reader = new FileReader();
+                    let img = document.createElement('img');
+                    img.className = 'post_img_edit'
+                    reader.readAsDataURL(file);
+                    reader.onload = () => {
+                        img.src = reader.result;
+                        attachments_div.appendChild(img);
+                    }
+                })
+                
             })
         })
     }

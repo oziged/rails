@@ -53,6 +53,14 @@ li {
   position: relative;
 }
 
+.fit_content {
+  width: fit-content;
+}
+
+.flex {
+  display: flex;
+}
+
 .notice {
   position: fixed;
   right: 10px;

@@ -6,3 +6,20 @@
   }
 }
 
+.attachments {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  &_image {
+    margin: 5px;
+    &::after {
+      content: '';
+      flex: auto;
+      }
+  }
+}
+
+.post_img_edit {
+  max-height: 200px;
+  max-width: 200px;
+}
