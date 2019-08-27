@@ -7,7 +7,6 @@
 }
 
 .attachments.old, .attachments.new {
-  justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
   background-color: white;
@@ -39,4 +38,25 @@
       opacity: 1;
     }
   }
+}
+
+.post_img_edit {
+  &:hover ~ {
+    .img_del {
+      opacity: 1;
+    }
+  }
+}
+
+.new_post_img {
+  width: 150px;
+  padding: 5px;
+  margin: 5px;
+  background-color: white;
+}
+
+.new_post_attachments {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }

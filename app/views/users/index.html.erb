@@ -7,8 +7,8 @@
 <h1>Users</h1>
 <% @users.each do |user| %>
   <div class="user_block">
-    <div class="user_avatar">
-      <%= link_to image_tag(user.get_avatar), user_path(user) %>
+    <div class="user_avatar" style="background:url('<%= user.get_avatar %>') no-repeat center center; background-size: cover">
+      <%#= link_to image_tag(user.get_avatar), user_path(user) %>
     </div>
     <div class="user_info">
       <div class="user_info_fullname">

@@ -1,5 +1,5 @@
 $(document).on 'turbolinks:load', ->
-  App.comments = App.cable.subscriptions.create ({
+ App.cable.subscriptions.create ({
     channel: "UserChannel",
     id: document.querySelector('[data-user-id]').getAttribute('data-user-id')
   }),
@@ -12,6 +12,7 @@ $(document).on 'turbolinks:load', ->
     received: (data) ->
       switch data.type
         when 'post_create'
+          console.log('post_create')
           $('.posts').prepend(data.div)
         when 'post_update'
           post = document.querySelector(".post_main_#{data.post_id}")

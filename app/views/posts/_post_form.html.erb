@@ -7,11 +7,12 @@
 </div>
 <div class="custom-file">
   <label class="custom-file-label" for="customFile">Choose files</label>
-  <%= form.file_field :images, multiple: true, class: 'custom-file-input', id: 'customFile' %>
+  <%= form.file_field :images, multiple: true, class: 'custom-file-input post_input', id: 'customFile' %>
 </div>
-<%#= form.file_field :images, multiple: true %>
 
-
+<% if type == 'new_post' %>
+  <div class="new_post_attachments"></div>
+<% end %>
 
 <div class="actions">
   <%= form.submit class: 'pure-button pure-button-primary' %>

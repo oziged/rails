@@ -9,6 +9,11 @@
     width: fit-content;
     .comment_img_edit {
       max-width: 150px;
+      &:hover ~ {
+        .img_del {
+          opacity: 1;
+        }
+      }
     }
   }
   input, textarea {

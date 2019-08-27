@@ -5,7 +5,7 @@
 <% end %>
 <div class="edit_post">
   <%= form_for @post, url: user_post_path, method: "put", html: {class: 'pure-form'} do |form| %>
-    <%= render 'posts/post_form', user: @user, form: form %>
+    <%= render 'posts/post_form', user: @user, form: form, type: 'post_edit' %>
   <% end %>
 </div>
 

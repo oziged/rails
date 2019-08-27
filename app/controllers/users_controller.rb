@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def index
     if params[:input]
       @users = User.search_by_fullname(params[:input])
+      @users = @users.paginate(:page => params[:page], :per_page => 10)
     else
       @users = User.all.paginate(:page => params[:page], :per_page => 10)
     end

@@ -1,13 +1,12 @@
-
     <div class="post_top_block">
     <div class="title"><%= post.title %></div>
     <div class="title_border"></div>
     <div class="body"><%= post.body %></div>
     <% if can_current_user_change? post %>
-      <%= link_to "#{fa_icon "edit"}".html_safe, edit_user_post_path(user_id: @user.id, id: post.id), class: 'edit_post_img' %>
-      <%= link_to "#{fa_icon "trash"}".html_safe, user_post_path(user_id: @user.id, id: post.id), method: "delete", class: 'delete_post_img' %>
+      <%= link_to "#{fa_icon "edit"}".html_safe, edit_user_post_path(user_id: post.user.id, id: post.id), class: 'edit_post_img' %>
+      <%= link_to "#{fa_icon "trash"}".html_safe, user_post_path(user_id: post.user.id, id: post.id), method: "delete", class: 'delete_post_img' %>
     <% end %>
-  </div>
+    </div>
 
   <div class="post_under_block">
     <div class="post_under_left_block">

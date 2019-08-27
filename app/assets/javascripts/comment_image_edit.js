@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load',()  => {
+document.addEventListener('turbolinks:load', () => {
     console.log('123');
     if (window.location.href.includes('comments') && window.location.href.includes('edit')) {
         let inputs = document.querySelectorAll("input[type='file']")

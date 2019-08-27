@@ -38,7 +38,7 @@
     <div class="new_post">
       <% if can_current_user_change? Post.new(user_id: @user.id) %>
         <%= form_with model: [@user, Post.new], html: {class: 'pure-form'} do |form| %>
-          <%= render 'posts/post_form', user: @user, form: form %>
+          <%= render 'posts/post_form', user: @user, form: form, type: 'new_post' %>
         <% end %>
       <% end %>
     </div>

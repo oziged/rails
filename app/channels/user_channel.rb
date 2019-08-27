@@ -1,9 +1,6 @@
 class UserChannel < ApplicationCable::Channel
   def subscribed
     stream_from "user_channel_#{params[:id]}"
-    p '*' * 100
-    p params[:id]
-    p '*' * 100
   end
 
   def unsubscribed
