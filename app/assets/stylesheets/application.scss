@@ -96,7 +96,10 @@ a {
   margin-bottom: 0;
 }
 
-.custom-file-label {
-  border-radius: 0;
-  font-size: 12px;
+.custom-file {
+  margin: 5px 0;
+}
+
+.modal-open .modal {
+  overflow: hidden;
 }

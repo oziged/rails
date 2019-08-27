@@ -196,6 +196,10 @@ a:visited {
 
 div[data-toggle='modal'] {
   position: relative;
+  width: fit-content;
+  img {
+    max-width: 150px;
+  }
 }
 
 .search_block {

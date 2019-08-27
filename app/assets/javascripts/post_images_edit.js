@@ -11,10 +11,10 @@ document.addEventListener('turbolinks:load',()  => {
                 let attachments_div = document.querySelector('.attachments.new');
                 attachments_div.innerHTML = '';
                 [].forEach.call(e.target.files,(file, index) => {
-                    if (index > 5) return;
+                    if (index > 4) return;
                     let reader = new FileReader();
                     let img = document.createElement('img');
-                    img.className = 'post_img_edit'
+                    img.className = 'attachments_image'
                     reader.readAsDataURL(file);
                     reader.onload = () => {
                         img.src = reader.result;

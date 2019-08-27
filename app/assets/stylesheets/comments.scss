@@ -3,8 +3,13 @@
   margin-top: 10px;
   max-width: 900px;
   .attachments {
+    background-color: white;
+    padding: 5px;
     position: relative;
     width: fit-content;
+    .comment_img_edit {
+      max-width: 150px;
+    }
   }
   input, textarea {
     width: 100%;
@@ -12,12 +17,17 @@
   }
 }
 
-.attachments {
-  .comment_img_edit {
-    max-height: 200px;
-  }
-}
-
 .comment_main {
   margin-bottom: 4px;
+}
+
+.comment_image_show {
+  margin: 5px;
+  background-color: white;
+  padding: 5px;
+  &:hover {
+    .img_del {
+      opacity: 1;
+    }
+  }
 }

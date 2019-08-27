@@ -1,4 +1,4 @@
-<div data-toggle="modal" data-target="#postImage<%= image.id %>">
+<div class="post_image_show" data-toggle="modal" data-target="#postImage<%= image.id %>">
     <%= image_tag image.data.url, class: 'full_width' %>
     <% if can_current_user_change?(image.post) %>
       <div><%= link_to "<i class='fa fa-times'></i>".html_safe, image_path(image), remote: true, method: 'delete', class: 'img_del' %></div>

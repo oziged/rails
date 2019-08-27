@@ -6,20 +6,37 @@
   }
 }
 
-.attachments {
+.attachments.old, .attachments.new {
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  &_image {
+  background-color: white;
+  .attachments_image {
     margin: 5px;
-    &::after {
-      content: '';
-      flex: auto;
-      }
   }
 }
 
-.post_img_edit {
-  max-height: 200px;
-  max-width: 200px;
+.attachments.new {
+  border-top: 1px solid rgba(0,0,0,0.2);
+}
+
+.attachments_image {
+  max-width: 150px;
+}
+
+.post_images_show {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #0000000f;
+  border-radius: 5px;
+}
+
+.post_image_show {
+  margin: 5px;
+  &:hover {
+    .img_del {
+      opacity: 1;
+    }
+  }
 }

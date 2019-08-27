@@ -4,6 +4,8 @@
 
 
 .img_del {
+  opacity: 0;
+  transition: .3s;
   position: absolute;
   top: 10px;
   right: 10px;

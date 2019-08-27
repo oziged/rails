@@ -6,19 +6,27 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = @user.posts.new(post_params.except(:images))
     if @post.save
-      flash[:success] = 'Post created'
-    else
-      flash[:error] = 'Title & Body can\'t be blank'
-    end
-    urls = []
-    unless post_params[:images].nil?
-      post_params[:images].each do |post_image|
-        @post.images.create(data: post_image)
+      respond_to do |format|
+        format.js {
+          unless post_params[:images].nil?
+            post_params[:images].each do |post_image|
+              @post.images.create(data: post_image)
+            end
+          end
+          ActionCable.server.broadcast "user_channel_#{@post.user.id}",
+            type: 'post_create',
+            div: (render partial: 'posts/post_full', locals: {post: @post})
+        }
       end
+    else
+      respond_to do |format|
+        format.js { render 'posts/create_error' }
+      end
+      # flash[:error] = 'Title & Body can\'t be blank'
+      # redirect_to root_path
     end
-    ActionCable.server.broadcast "user_channel_#{@post.user.id}",
-    type: 'post_create',
-    div: (render partial: 'posts/post_full', locals: {post: @post})
+
+
   end
 
   def show
@@ -28,8 +36,8 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = @user.posts.find(params[:id])
     ActionCable.server.broadcast "user_channel_#{@post.user_id}",
-    type: 'post_delete',
-    post_id: @post.id
+                                 type: 'post_delete',
+                                 post_id: @post.id
     @post.destroy
   end
 
@@ -43,7 +51,7 @@ class PostsController < ApplicationController
         image = Image.find(id)
         image.data.remove!
         image.destroy
-      end  
+      end
     end
     new_images = post_params[:images]
     @post = Post.find(params[:id])

@@ -51,7 +51,7 @@
       </div>
     <% end %>
 
-    <div class="collapse" id="images<%= post.id %>">
+    <div class="collapse post_images_show" id="images<%= post.id %>">
         <% post.images.each do |image| %>
           <%= render 'images/image', image: image %>
         <% end %>

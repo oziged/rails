@@ -51,7 +51,7 @@
   
   <% if comment.image? %>
     <div class="collapse" id="commentImage<%= comment.id %>">
-      <div data-toggle="modal" data-target="#commentImageModal<%= comment.id %>">
+      <div class="comment_image_show" data-toggle="modal" data-target="#commentImageModal<%= comment.id %>">
         <%= image_tag comment.image.url, class: "full_width" %>
         <% if can_current_user_change? comment%>
           <div><%= link_to "<i class='fa fa-times'></i>".html_safe, comment_image_path(id: comment.id), method: 'delete', class: 'img_del' %></div>

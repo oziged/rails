@@ -1,12 +1,15 @@
 <div class="field">
-  <%= form.text_field :title, placeholder: 'Заголовок поста', maxlength: 20 %>
+  <%= form.text_field :title, placeholder: 'Post title', maxlength: 20 %>
 </div>
 
 <div class="field">
-  <%= form.text_area :body, placeholder: 'Расскажите что-нибудь..', maxlength: 5000 %>
+  <%= form.text_area :body, placeholder: 'Tell smth...', maxlength: 5000 %>
 </div>
-
-<%= form.file_field :images, multiple: true %>
+<div class="custom-file">
+  <label class="custom-file-label" for="customFile">Choose files</label>
+  <%= form.file_field :images, multiple: true, class: 'custom-file-input', id: 'customFile' %>
+</div>
+<%#= form.file_field :images, multiple: true %>
 
 
 
