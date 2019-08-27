@@ -2,7 +2,7 @@
 <%= form_with url: search_path, method: :get, local: true, enforce_utf8: false, html: {class: 'pure-form'} do |f| %>
   <%= f.label :input, "Search for:" %>
   <%= f.text_field :input %>
-  <%= f.submit "Search", name: nil, class: "pure-button pure-button-primary"%>
+  <%= f.submit "Search", name: nil, class: "submit_search pure-button pure-button-primary"%>
 <% end %>
 <h1>Users</h1>
 <% @users.each do |user| %>

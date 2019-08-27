@@ -19,8 +19,6 @@ class PostsController < ApplicationController
       respond_to do |format|
         format.js { render 'posts/create_error' }
       end
-      # flash[:error] = 'Title & Body can\'t be blank'
-      # redirect_to root_path
     end
 
 

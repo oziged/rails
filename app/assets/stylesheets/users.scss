@@ -14,6 +14,10 @@ a:visited {
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+
+    .avatar {
+      height: 300px;
+    }
   }
 
   .right_block {
@@ -25,26 +29,32 @@ a:visited {
       background-color: white;
       box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
       padding: 10px 20px;
+
       .first_line {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-bottom: 10px;
         border-bottom: 1px solid rgb(218, 218, 218);
+
         .online_status {
           opacity: .6;
           font-size: 14px;
         }
       }
+
       .user_info {
         font-size: 14px;
         margin-top: 10px;
+
         table {
           width: 100%;
+
           tr {
             .left_column {
               width: 40%;
             }
+
             .right_column {
               width: 60%;
             }
@@ -52,8 +62,10 @@ a:visited {
         }
       }
     }
+
     .new_post {
       margin: 10px 0 0 0;
+
       input, textarea {
         width: 100%;
         margin-bottom: 5px;
@@ -62,86 +74,102 @@ a:visited {
 
     .post {
       width: 100%;
+
       &_top_block {
         position: relative;
         padding: 10px;
         background-color: white;
         border-radius: 5px;
         border-bottom: 1px solid rgb(218, 218, 218);
+
         .title_border {
           margin: 4px 0;
           width: 100%;
           opacity: .1;
           border-bottom: 1px solid black;
         }
+
         .delete_post_img {
           position: absolute;
           right: 10px;
           top: 10px;
+
           .fa-trash {
             font-size: 20px;
+
             &:hover {
               color: red;
             }
           }
         }
+
         .edit_post_img {
           position: absolute;
           right: 33px;
           top: 11px;
+
           .fa-edit {
             font-size: 20px;
+
             &:hover {
               color: #0078e7;
             }
           }
         }
       }
+
       &_comments {
         width: 100%;
         background-color: #00000005;
       }
+
       &_comment {
         display: flex;
         align-items: center;
         width: 100%;
         padding: 5px 10px;
         font-size: 12px;
-        border-left: 1px solid rgba(0,0,0,.2);
+        border-left: 1px solid rgba(0, 0, 0, .2);
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         background-color: white;
+
         &_avatar {
           width: 25px;
           height: 25px;
         }
       }
+
       .edit_comment_text {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         font-size: 10px;
         padding: 5px 5px 5px 0;
-        border-bottom: 1px solid rgba(0,0,0,.2);
-        border-left: 1px solid rgba(0,0,0,.2);
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
+        border-left: 1px solid rgba(0, 0, 0, .2);
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
         background-color: whitesmoke;
+
         div {
           margin-left: 5px;
         }
       }
+
       .comment_right_block {
         width: 100%;
         margin-left: 5px;
       }
-      .add_comment, .post_comment{
+
+      .add_comment, .post_comment {
         input, textarea {
           margin-bottom: 5px;
           font-size: 12px;
           width: 100%;
         }
       }
+
       .post_comment {
         border-bottom: 1px dotted black;
       }
@@ -152,6 +180,7 @@ a:visited {
 .form_edit {
   margin: 20px auto;
   width: 50%;
+
   a[data-method="delete"] {
     margin-top: 5px;
     width: 100%;
@@ -159,8 +188,8 @@ a:visited {
 }
 
 .row_zero_margin {
-  margin-right: 0!important;
-  margin-left: 0!important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 
 .col_img_wrapper {
@@ -178,9 +207,11 @@ a:visited {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   .post_under_left_block, .post_under_right_block {
     display: flex;
     align-items: center;
+
     i {
       margin-right: 5px;
     }
@@ -194,6 +225,7 @@ a:visited {
 div[data-toggle='modal'] {
   position: relative;
   width: fit-content;
+
   img {
     max-width: 150px;
   }
@@ -208,3 +240,95 @@ ul.pagination {
   margin: 10px auto;
   width: fit-content;
 }
+
+.submit_search {
+  margin-top: 5px;
+}
+
+
+
+////////////////////////////////////////////////
+
+@media only screen and (max-width: 920px) {
+  .main_block {
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .search_block {
+    padding: 10px;
+  }
+
+  .main_block {
+    flex-direction: column;
+
+    .left_block {
+      width: 90%;
+      margin: 10px auto;
+    }
+
+    .right_block {
+      margin: 0 auto;
+    }
+
+    .left_block, .right_block {
+      width: 80%;
+
+      .user_info {
+        .right_column {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .form_edit {
+    width: 90%;
+  }
+
+  .login_form {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  header {
+    .container {
+      padding: 0;
+    }
+  }
+
+  .main_section {
+    margin-top: 10px;
+  }
+
+  header {
+    .container {
+      .left_block {
+        display: none;
+      }
+
+      .right_block {
+        margin: 0 auto;
+        padding: 0;
+
+        a:first-child {
+          li {
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+          }
+        }
+      }
+    }
+  }
+  .main_block {
+    .left_block, .right_block {
+      width: 95%;
+    }
+  }
+  .post {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+}
+
