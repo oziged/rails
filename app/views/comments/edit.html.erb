@@ -1,7 +1,7 @@
 <div class="edit_comment">
   <%= form_for :comment, url: comment_path, method: 'patch', html: {class: 'pure-form'} do |form| %>
     <div class="field">
-     <%= form.text_area :body, placeholder: 'Текст комментария...' %>
+     <%= form.text_area :body, placeholder: 'Comment text...' %>
     </div>
     <%= form.file_field :image %>
     <div class="attachments">

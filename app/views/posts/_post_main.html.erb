@@ -38,13 +38,13 @@
 <div class="add_comment collapse" id="post<%= post.id %>">
   <%= form_for :comment, url: comments_path, html: {class: 'pure-form'}, remote: true do |form| %>
     <div class="field">
-      <%= form.text_area :body, placeholder: 'Текст комментария...' %>
+      <%= form.text_area :body, placeholder: 'Comment text...' %>
       <%= form.hidden_field :commentable_type, value: 'Post' %>
       <%= form.hidden_field :commentable_id, value: post.id %>
       <%= form.file_field :image %>
     </div>
     <div class="actions">
-      <%= form.submit class: 'pure-button pure-button-primary' %>
+      <%= form.submit class: 'pure-button pure-button-primary', value: 'Send comment' %>
     </div>
     </div>
   <% end %>
