@@ -1,6 +1,6 @@
 redis: &redis
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://whispering-scrubland-19020.herokuapp.com/
 
 production: *redis
 development: *redis
