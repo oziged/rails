@@ -41,7 +41,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
-group :development do
+# group :development do
   gem 'will_paginate-bootstrap4'
   gem 'noty-rails'
   gem 'sidekiq', '~> 4.1', '>= 4.1.2'
@@ -65,7 +65,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
+# end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
